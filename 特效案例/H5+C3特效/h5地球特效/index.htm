@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta charset="utf-8">
+    <title>html5 canvas地球3D特效 | jQuery特效|手机微信网站特效| 网页特效库</title>
+	<meta name="keywords" content="SVG特效, 手机微信网站特效, css3动画, html5特效, 网页特效" />
+	<meta name="description" content="网页特效库-专注于HTML5、CSS3、js、jQuery、手机移动端等网页特效的手机与分享。特效库始终坚持：无会员、无积分、无限制的“三无原则”，所有的资源都免费提供广大童鞋下载学习和使用。" />
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0">
+    <script type="text/javascript" src="inchovertree/clay.min.js"></script>
+    <script type="text/javascript">
+	function Earth() {
+		var stage = new Clay.Stage(800, 600);
+		var world = stage.getWorld();
+		var camera = stage.getCamera();
+
+		camera.set(0,0,0);
+		camera.setResolution(800, 600);
+		camera.setTarget(new Clay.Vector(-100,0,100));
+
+		window.onresize = function() {
+		    stage.resizeTo(
+                800,600
+			);
+		};
+
+		window.onresize();
+		Clay.Collada.load('inchovertree/earth.xml', function (scene) {
+			scene.init(stage);
+
+			var earth = new Clay.Texture('inchovertree/earthmap1k.jpg', stage);
+
+			var clouds = new Image();
+			clouds.src = 'inchovertree/earthclouds1k.png';
+
+			var dark = new Image();
+			dark.src = 'inchovertree/darkside.png';
+
+			var waiting = setInterval(function(){
+				if (earth.complete && clouds.complete && dark.complete){
+					clearInterval(waiting);
+					play();
+				}
+			}, 1000);
+
+			function play() {
+				var shape = world.getShapes()[0];
+				shape.setMaterial(earth);
+
+				var x, y, z, t = Math.PI/4, r = 0, tick = 0.01, radius = 200;
+				var ttx = earth.canvas.getContext('2d');
+				var base = earth.image;
+				var wind = 0;
+
+				stage.addEvent('enterframe', function(){
+
+					ttx.drawImage(base, 0,0);
+					var pos = (++wind)%1000;
+					ttx.drawImage(clouds, pos, 0);
+					ttx.drawImage(clouds, pos-1000, 0);
+					ttx.drawImage(dark, 0,0);
+
+					t += tick;
+					x = -100 + Math.sin(t) * radius;
+					z = 100 + Math.cos(t) * radius;
+					y = Math.cos(t/3) * 50
+					camera.set(x, y, z);
+				});
+
+				stage.run();
+			}
+		});
+	}
+	window.addEventListener('load', function(){
+		new Earth();
+	}, false);        
+    </script>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background: black;
+        }
+        .canvas3D {
+            background: black;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .earthhovertree{z-index:4321;position:fixed;left:789px;color:white;}a{color:white}
+    </style>
+</head>
+<body>
+    
+        <div id="canvas">
+
+        </div>
+    	<div style="width: 100%; height: auto; line-height: 25px; text-align: center; color: #FFFFFF;">
+			更多网页特效，请访问<a href="http://www.5iweb.com.cn"><b>网页特效库</b></a>,欢迎加入网页特效库QQ交流群：258242983
+		</div>
+</body>
+</html>
