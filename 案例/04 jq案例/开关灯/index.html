@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .player {
+            width: 640px;
+            height: 400px;
+            /* background-color: greenyellow; */
+            margin: 50px auto;
+        }
+    </style>
+    <script src="../1.x/jquery-1.12.4.js"></script>
+    <script>
+        // 思路
+        // 1> 准备 ready 方法, 获得 按钮, 绑定事件
+        // 2> 事件的逻辑
+        //  默认开始的时候是 开灯, 所以 按钮 的 title 属性是 on, body 的背景色为 空
+        //  点击按钮 , 要
+        //      判断 按钮 的 title 属性是否为 on
+        //          设置 按钮的文字为 关灯, title 的属性为 off, body 的背景色为 black
+        //      否则
+        //          设置 按钮的 文字为 开灯, title 的属性为 on, body 的背景色为 空
+
+        $( function () {
+
+            var $btn = $( '#btn' ); // 获得元素
+
+            $btn.click( function () {
+                // 获得 title 的值
+                var state = $( this ).prop( 'title' );
+                // 判断 title 的取值
+                if ( state === 'on' ) {
+                    // 处于开灯状态, 设置为 关灯, 键按钮的文字改为 开灯, off, black
+                    $( this ).prop( {
+                        value: '开灯',
+                        title: 'off'
+                    } );
+
+                    $( 'body' ).css( 'backgroundColor', 'black' );
+
+                } else {
+                    // 处于关灯状态, 设置为 开灯, 键按钮的文字改为 关灯, on, 空
+                    $( this ).prop( {
+                        value: '关灯',
+                        title: 'on'
+                    } );
+
+                    $( 'body' ).css( 'backgroundColor', '' );
+                }
+            } );    
+        } );
+    
+    </script>
+</head>
+<body>
+    <div class="player">
+        <input type="button" value="关灯" id="btn" title="on">
+        <video src="./media/mengzhongdehunli.mp4" width="100%" height="100%" controls></video>
+    </div>
+    
+</body>
+</html>

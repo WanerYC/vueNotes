@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>翻转数组</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 方法一
+		var arr = ['a', 'b', 'c', 'd'];
+		// 注意：遍历时主需要遍历'前一半'即可 ,前一半交换了，后一半又换回来了，所以一半即可
+		for (var i = 0; i < parseInt(arr.length/2); i++) {
+			var temp;
+			temp = arr[i];
+			arr[i] = arr[arr.length-1-i];
+			arr[arr.length - 1 - i] = temp; 
+		}
+		console.log(arr);
+
+
+		//   arr[0]     arr[arr.length-1]
+		//   arr[1]     arr[arr.length-2]
+		
+
+		// 方法二 :  反向遍历
+		var resultArr = [];
+		for (var i = arr.length-1; i >= 0; i--) {
+			resultArr[resultArr.length] = arr[i];
+		}
+		console.log(resultArr);
+
+		// 方法三 :  调用数组方法  reverse()
+	 	var reverseArr = arr.reverse();
+	 	console.log(reverseArr);
+
+
+	 	//封装成函数
+	 	function reverse(arr){
+	 		var resultArr1 = [];
+			for (var i = arr.length-1; i >= 0; i--) {
+				resultArr1[resultArr1.length] = arr[i];
+			}
+			return resultArr1 ; 
+	 	}
+	 	console.log(reverse(['a', 'b', 'c', 'd']));
+	</script>
+</body>
+</html>

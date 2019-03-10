@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">按钮</button>
+	<a href="http://www.baidu.com" id="link">百度</a>
+	<script type="text/javascript">
+
+		// 修改元素里面的内容
+		// 元素对象.innerText = '新内容';
+
+		var btn = document.getElementById('btn');
+
+		btn.onclick = function () {
+
+			var link = document.getElementById('link');
+
+			link.href = 'http://www.itcast.cn';
+
+			link.innerText = '黑马程序员';
+
+		};
+	</script>
+</body>
+</html>

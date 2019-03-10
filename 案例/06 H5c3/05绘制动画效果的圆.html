@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	 <canvas width="600" height="400"></canvas>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+	 	 //绘制圆的开始角度
+	 	 var s_ange=-90;
+
+	 	 //绘制圆的结束角度
+	 	 var e_angle=-90;
+	 	 //绘制圆的每次累加的角度
+	 	 var ange_step=5;
+	 	 //绘制动画圆
+	 	 ctx.fillStyle="red";
+	 	 var id=setInterval(function() {
+	 	 	
+	 	 	//清屏
+	 	 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	 	 	ctx.moveTo(300, 200);
+	 	 	//绘制
+	 	 	ctx.arc(300, 200, 100, aTor(s_ange), aTor(e_angle));
+
+	 	 	ctx.fill();
+
+	 	 	e_angle+=ange_step;
+	 	 	if(e_angle>270) {
+	 	 		e_angle=270;
+	 	 		clearInterval(id);
+	 	 	}
+	 	 }, 20);
+
+
+
+	 	 //角度转弧度
+	 	 function aTor ( angle ) {
+
+	 	 	return angle*Math.PI/180;
+	 	 }
+
+	 	 //弧度转角度
+	 	 function rToa ( radian ) {
+
+	 	 	return radian*180/Math.PI;
+	 	 }
+	 </script>
+</body>
+</html>

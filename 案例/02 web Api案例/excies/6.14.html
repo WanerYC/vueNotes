@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .hd {
+            height: 45px;
+        }
+
+        .hd span {
+            display: inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .hd span.current {
+            background-color: purple;
+            color: #FFF;
+        }
+
+        .bd li {
+            height: 255px;
+            background-color: purple;
+            display: none;
+        }
+
+        .bd li.current {
+            display: block;
+            color: #FFF;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box" id="box">
+        <div class="hd">
+            <span class="current">体育</span>
+            <span>娱乐</span>
+            <span>新闻</span>
+            <span>综合</span>
+        </div>
+        <div class="bd">
+            <ul>
+                <li class="current">我是体育模块</li>
+                <li>我是娱乐模块</li>
+                <li>我是新闻模块</li>
+                <li>我是综合模块</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // 选项卡切换
+        // 获取元素
+        // 标签名获取
+        var spans = document.getElementsByTagName('span');
+        // var current = document.getElementsByClassName("current");
+        var bd = document.getElementsByClassName("bd");
+        console.log(spans);
+        // console.log(current);
+    </script>
+
+</body>
+</html>

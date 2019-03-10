@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="inp">
+	<script type="text/javascript">
+
+		/*
+			用JS去页面中获取内容 那么这个内容看起来不管像什么类型 都是字符串类型
+		*/
+
+		var inp = document.getElementById('inp');
+
+		inp.onblur = function () {
+
+			var value = this.value;
+			value = value.trim();
+
+			console.log(value);
+
+			if (value.length < 3 || value.length > 6) {
+
+				this.style.border = '1px solid red';
+				this.style.backgroundColor = 'red';
+
+			}
+
+		};
+
+		inp.onfocus = function () {
+
+			this.style.border = '1px solid #ccc';
+			this.style.backgroundColor = '#FFF';
+
+		};
+
+	</script>
+</body>
+</html>

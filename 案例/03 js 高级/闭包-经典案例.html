@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="mv">
+    <li>西施</li>
+    <li>貂蝉</li>
+    <li>昭君</li>
+    <li>凤姐</li>
+  </ul>
+
+  <script>
+    // 点击li ，输出当前li的索引
+    var mv = document.getElementById('mv');
+    // 遍历所有的li
+    for (var i = 0; i < mv.children.length; i++) {
+      var li = mv.children[i];
+
+      // 通过自调用函数开启一个作用域，存储循环变量i
+      // 因为全局作用域中的li.onclick 引用了自调用函数中定义的function。所以自调用函数的作用域不会被释放
+      (function (index) {
+        // 注册事件
+        li.onclick = function () {
+          console.log(index);
+        };
+      })(i);
+      
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>开机动画案例</title>
+    <style>
+    .box {
+        width: 322px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <span id="closeButton"></span>
+        <div class="hd" id="headPart">
+            <img src="images/t.jpg"/>
+        </div>
+        <div class="bd" id="bottomPart">
+            <img src="images/b.jpg"/>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var closeButton = document.getElementById('closeButton');
+        var bottomPart = document.getElementById('bottomPart');
+        var box = document.getElementById('box');
+
+        closeButton.onclick = function () {
+
+            animate(bottomPart, 'height', 0, function () {
+                animate(box, 'width', 0);
+            });
+
+        };
+
+
+        function animate (element, attr, target, fn) {
+
+            // 清除上一次的定时器
+            clearInterval(element.timerId);
+
+            // 开启定时器 让元素开始运动
+            element.timerId = setInterval(function () {
+
+                // 元素的当前值
+                var current = parseInt(getComputedStyle(element)[attr]);
+
+                // getComputedStyle(element)[attr] =>  100px
+
+                // parseInt(100px)  => 100
+
+
+                // 计算运动速度
+                var speed = 0;
+
+                // 如果当前值 小于 目标点 向上取整
+                if (current < target) {
+                    speed = Math.ceil((target - current) / 10);
+                }else{
+                    // 如果当前值 大于目标点  向下取整
+                    speed = Math.floor((target - current) / 10);
+                }
+
+                // 如果当前值等于目标点
+                if (current == target) {
+
+                    // 清除定时器 让运动停止
+                    clearInterval(element.timerId);
+
+                    // 如果传递了fn函数 就调用
+                    if (fn) {
+                        fn();
+                    }
+                    
+
+                } else {
+
+                    // 元素朝着目标点进行运动
+                    element.style[attr] = current + speed + 'px';
+
+                }
+
+            }, 30);
+
+        }
+    </script>
+</body>
+
+</html>

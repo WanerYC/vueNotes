@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+		button {
+			width: 100px;
+			height: 30px;
+		}
+		#box1 {
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 0;
+			top: 40px;
+		}
+
+		#box2 {
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 0;
+			top: 150px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn1">运动到400</button>
+	<button id="btn2">运动到800</button>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<script type="text/javascript">
+		var btn1 = document.getElementById('btn1');
+		var btn2 = document.getElementById('btn2');
+		var box1 = document.getElementById('box1');
+		var box2 = document.getElementById('box2');
+
+		var timerId = null;
+
+		btn1.onclick = function () {
+
+			animate(box1, 400);
+			
+		};
+
+		btn2.onclick = function () {
+
+			animate(box2, 800);
+
+		};
+
+		function animate (element, target) {
+
+			clearInterval(element.timerId);
+
+			element.timerId = setInterval(function () {
+
+				var current = element.offsetLeft;
+
+				if (element.offsetLeft == target) {
+
+					clearInterval(element.timerId);
+
+				} else {
+
+					element.style.left = current + 10 + 'px';
+
+				}
+
+			}, 30);
+
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+.container {
+	max-width: 640px;
+	min-width: 300px;
+	margin: 0 auto;
+}
+
+.header {
+	/* 固定定位相对于浏览器窗口 跟它本身的父元素没有任何关系 */
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+.header .inner {
+	max-width: 640px;
+	margin: 0 auto;
+	height: 40px;
+}
+
+.header .logo {
+	width: 56px;
+	height: 20px;
+	left: 10px;
+	top: 10px;
+	background-position:  0 -110px;
+}
+
+.header .login {
+	right: 0;
+	top: 0;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	width: 50px;
+	color: #FFF;
+}
+
+.header form {
+	width: 100%;
+	height: 40px;
+	padding-left: 80px;
+	padding-right: 60px;
+}
+
+.header form input {
+	width: 100%;
+	height: 30px;
+	border-radius: 20px;
+	margin-top: 5px;
+	padding: 0 20px 0 35px;
+}
+
+.header form span {
+	width: 19px;
+	height: 19px;
+	background-position: -60px -110px;
+	left: 88px;
+	top: 11px;
+}
+
+.banner img {
+	width: 100%;
+	vertical-align: top;
+}
+
+.banner .swiper-pagination-bullet {
+	background: #FFF;
+}
+
+.navigation {
+	background: #FFF;
+	border-bottom: 1px solid #e0e0e0;
+	padding: 10px 10px 0;
+}
+
+.navigation li {
+	width: 25%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.navigation li a {
+
+}
+
+.navigation li img{
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	display: block;
+}
+
+.navigation li span{
+	display: block;
+	text-align: center;
+	margin-top: 4px;
+}
+
+
+.main {
+	padding: 0 10px;
+	overflow: hidden;
+}
+
+.product {
+	background: #FFF;
+	margin-top: 10px;
+	box-shadow: 0 0 3px #ccc;
+}
+
+.product .product-title {
+	height: 32px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.product .handKill {
+	height: 32px;
+	line-height: 32px;
+	background: url(../images/seckill-icon.png) no-repeat left center;
+	background-size: 17px 20px;
+	padding-left: 22px;
+	margin-left: 10px;
+	color: #d8505c;
+}
+
+.product .countDown {
+	height: 32px;
+	margin-left: 10px;
+}
+
+.product .countDown span {
+	width: 15px;
+	height: 15px;
+	float:left;
+	color:#FFF;
+	background:#000;
+	line-height: 15px;
+	text-align: center;
+	margin: 8px 2px 0 2px;
+}
+
+.product .countDown span:nth-child(3n){
+	background: none;
+	color: #000;
+	width: 4px;
+}
+
+.product .more {
+	height: 32px;
+	line-height: 32px;
+	width: 60px;
+	text-align: center;
+}
+
+
+.handKill-list {
+	overflow: hidden;
+	padding: 10px;
+}
+
+.handKill-list li {
+	width: 33.333%;
+	float: left;
+	border-right: 1px solid #e0e0e0;
+}
+
+.handKill-list li:last-child {
+	border-right: none;
+}
+
+.handKill-list a {
+	
+}
+
+.handKill-list img {
+	width: 65%;
+	display: block;
+	margin: 0 auto;
+}
+
+.handKill-list span {
+	display: block;
+	text-align: center;
+	font-size: 12px;
+}
+
+.handKill-list .nowPrice {
+	color: #d8505c;
+	padding-top: 2px;
+}
+
+.handKill-list .oldPrice {
+	text-decoration: line-through;
+}
+
+.product .title {
+	height: 32px;
+	line-height: 32px;
+	padding-left: 20px;
+
+}
+
+.product .title::before {
+	content: '';
+	width: 3px;
+	height: 12px;
+	background: #d8505c;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+.product .imgBox {
+	width: 50%;
+}
+
+.product .imgBox img {
+	width: 100%;
+	display: block;
+}

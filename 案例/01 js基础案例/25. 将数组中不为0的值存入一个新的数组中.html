@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>将数组中不为0的值存入一个新的数组中</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var  arr = [1, 2, 3, 0, 4, 5, 6, 0, 5, 5, 5, 0, 2, 2, 1];
+		var  resultArr = [];
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] !== 0 ) {
+				resultArr[resultArr.length] = arr[i];
+			}
+		}
+		console.log(resultArr);
+	</script>
+</body>
+</html>

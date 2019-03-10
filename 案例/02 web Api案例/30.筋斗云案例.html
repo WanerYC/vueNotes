@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    ul {
+        list-style: none
+    }
+
+    body {
+        background-color: #333;
+    }
+
+    .nav {
+        width: 800px;
+        height: 42px;
+        margin: 100px auto;
+        background: url(images/rss.png) right center no-repeat;
+        background-color: #fff;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .nav li {
+        width: 83px;
+        height: 42px;
+        text-align: center;
+        line-height: 42px;
+        float: left;
+        cursor: pointer;
+    }
+
+    .nav span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 83px;
+        height: 42px;
+        background: url(images/cloud.gif) no-repeat;
+    }
+
+    ul {
+        position: relative;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <span id="cloud"></span>
+        <ul id="navBar">
+            <li>北京校区</li>
+            <li>上海校区</li>
+            <li>广州校区</li>
+            <li>深圳校区</li>
+            <li>武汉校区</li>
+            <li>关于我们</li>
+            <li>联系我们</li>
+            <li>招贤纳士</li>
+        </ul>
+    </div>
+    <script>
+       /*
+            ctrl + shift + v 格式化粘贴
+
+            1. 获取LI元素 为每一个LI元素添加移入事件
+            2. 在移入某一个LI的时候 获取LI距离定位父级的距离
+            3. 将值赋值给云彩
+        */
+        
+        var lis = document.getElementById('navBar').children;
+        var cloud = document.getElementById('cloud');
+
+        // 云彩的位置
+        var position = 0;
+
+        // 循环li集合 并添加相关事件
+        for (var i = 0; i < lis.length; i++) {
+
+            // 当发生移入事件的时候 执行follow函数
+            lis[i].onmouseover = follow;
+
+            // 当发生移出事件的时候 执行goBack函数
+            lis[i].onmouseout = goBack;
+
+            // 当发生点击事件的时候 执行stop函数
+            lis[i].onclick = stop;
+
+        }
+
+        function follow () {
+           // cloud.style.left = this.offsetLeft + 'px';
+           animate(cloud, 'left', this.offsetLeft);
+        }
+
+
+        function goBack () {
+
+            animate(cloud, 'left', position);
+
+        }
+
+        function stop () {
+
+            position = this.offsetLeft;
+        }
+
+        function animate (element, attr, target, fn) {
+
+            // 清除上一次的定时器
+            clearInterval(element.timerId);
+
+            // 开启定时器 让元素开始运动
+            element.timerId = setInterval(function () {
+
+                // 元素的当前值
+                var current = parseInt(getComputedStyle(element)[attr]);
+
+                // getComputedStyle(element)[attr] =>  100px
+
+                // parseInt(100px)  => 100
+
+
+                // 计算运动速度
+                var speed = 0;
+
+                // 如果当前值 小于 目标点 向上取整
+                if (current < target) {
+                    speed = Math.ceil((target - current) / 10);
+                }else{
+                    // 如果当前值 大于目标点  向下取整
+                    speed = Math.floor((target - current) / 10);
+                }
+
+                // 如果当前值等于目标点
+                if (current == target) {
+
+                    // 清除定时器 让运动停止
+                    clearInterval(element.timerId);
+
+                    // 如果传递了fn函数 就调用
+                    if (fn) {
+                        fn();
+                    }
+                    
+
+                } else {
+
+                    // 元素朝着目标点进行运动
+                    element.style[attr] = current + speed + 'px';
+
+                }
+
+            }, 30);
+
+        }
+
+    </script>
+</body>
+
+</html>

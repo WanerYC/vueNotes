@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>将字符串数组用|或其他符号分割</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = ["张三","李四","王五"];
+		var resultArr = arr[0];
+		for(var i=1; i<arr.length;i++){
+			resultArr += '|'+arr[i] ;
+		}
+		console.log(resultArr);
+	</script>
+</body>
+</html>

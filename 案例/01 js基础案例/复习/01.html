@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.打印1-100所有整数
+        /*for (var i = 1; i < 101; i++) {
+            console.log(i);
+        }*/
+
+        // 找出1-10之间除3以外的值
+        /*for (var i = 1; i < 11; i++) {
+            if (i % 3 != 0) {
+                console.log(i);
+            }
+        }*/
+
+        // 打印直角三角形
+        /*var str = ''; 
+        for ( var i = 0; i < 10; i++) {
+
+            for (var j = 0; j < i; j++) {
+                // console.log("*");
+                str += '*' + ' ';
+            }
+            str += '\n';
+        }
+        console.log(str);*/
+
+        // 求1-n之间所有数的和
+        function getSum (n) {
+            var sum=0;
+            for (var i = 1; i < n; i++) {
+                sum += i;
+            }  
+            return sum;         
+        }
+
+        var sums = getSum(1000);
+        console.log(sums);
+    </script>
+</body>
+</html>

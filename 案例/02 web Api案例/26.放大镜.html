@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	    * {
+	        margin: 0;
+	        padding: 0;
+	    }
+
+	    .big {
+	        width: 400px;
+	        height: 400px;
+	        position: absolute;
+	        top: 100px;
+	        left: 640px;
+	        border: 1px solid #ccc;
+	        overflow: hidden;
+	        display: none;
+	    }
+
+	    .big img {
+	        position: absolute;
+	    }
+
+	    .mask {
+	        width: 175px;
+	        height: 175px;
+	        background-color: rgba(255, 255, 0, 0.4);
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	        cursor: move;
+	        display: none;
+	    }
+
+	    .small {
+	        position: absolute;
+	        left: 200px;
+	        top: 100px;
+	    }
+	    .small img {
+	    	vertical-align: top;
+	    }
+	</style>
+</head>
+<body>
+	<div class="small" id="small">
+        <img src="images/small.jpg"/>
+        <div class="mask" id="mask"></div>
+    </div>
+    <div class="big" id="big">
+        <img src="images/big.jpg"/>
+    </div>
+    <script type="text/javascript">
+    	/*
+    		1. 获取元素
+    		2. 为小盒子添加移动事件
+    		3. 显示mask和大盒子
+    		4. 计算mask的坐标并限制范围
+    		5. 计算大图坐标
+    	*/
+    	
+    	var small = document.getElementById('small');
+    	var mask = small.children[1];
+    	var big = document.getElementById('big');
+    	var bigImage = big.children[0];
+
+    	small.onmousemove = function (e) {
+
+    		// 显示mask
+    		mask.style.display = 'block';
+    		// 显示大图
+    		big.style.display = 'block';
+    		
+    		// 计算mask left
+    		var left = e.pageX - small.offsetLeft - mask.offsetWidth / 2;
+    		// 计算mask top
+    		var top = e.pageY - small.offsetTop - mask.offsetHeight / 2;
+    		// 计算最大left
+    		var maxLeft = small.offsetWidth - mask.offsetWidth;
+    		// 计算最大top
+    		var maxTop = small.offsetHeight - mask.offsetHeight;
+
+    		// 限制范围
+    		left = left < 0 ? 0 : left;
+    		top = top < 0 ? 0 : top;
+
+    		left = left > maxLeft ? maxLeft : left;
+    		top = top > maxTop ? maxTop : top;
+
+    		// 为mask设置left 和 top
+    		mask.style.left = left + 'px';
+    		mask.style.top = top + 'px';
+
+    		// 计算大图位置
+    		bigImage.style.left = -left * 2 + 'px';
+    		bigImage.style.top = -top * 2 + 'px';
+
+    		// 限制范围
+    		if (bigImage.offsetLeft < -400) {
+    			bigImage.style.left = -400 + 'px';
+    		}
+    		
+    		if (bigImage.offsetTop < -400) {
+    			bigImage.style.top = -400 + 'px';
+    		}	
+
+    	};
+
+        // onmouseout 鼠标移出事件 在火狐浏览器中不兼容 最好改为 onmouseleave
+    	small.onmouseout = function () {
+    		mask.style.display = 'none';
+    		big.style.display = 'none';
+    	};
+
+    </script>
+</body>
+</html>

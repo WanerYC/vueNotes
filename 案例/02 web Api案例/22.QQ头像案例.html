@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#qq-body {
+			position: absolute;
+			right: 100px;
+			top: 50%;
+			margin-top: -288px;
+			width: 282px;
+			height: 577px;
+			background: url(images/qq-body.png) no-repeat;
+			border: 1px solid #ccc;
+			box-shadow: 0px 0px 3px #e1e1e1;
+		}
+
+		#qq-head {
+			position: absolute;
+			right: 392px;
+			top: 50%;
+			margin-top: -286px;
+			width: 289px;
+			height: 147px;
+			background: url(images/qq-head.png) no-repeat;
+			border: 1px solid #ccc;
+			box-shadow: 0px 0px 3px #e1e1e1;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="qq-body"></div>
+	<div id="qq-head"></div>
+	<script type="text/javascript">
+		var qqBody = document.getElementById('qq-body');
+		var qqHead = document.getElementById('qq-head');
+
+		var timerID = null;
+
+		qqBody.onmouseover = function () {
+			qqHead.style.display = 'block';
+		};
+
+		qqBody.onmouseout = function () {
+
+			timerID = setTimeout(function () {
+				qqHead.style.display = 'none';
+			},1000);
+			
+		};
+
+		qqHead.onmouseover = function () {
+			clearTimeout(timerID);
+		};
+
+		qqHead.onmouseout = function () {
+
+			qqHead.style.display = 'none';
+		};
+	</script>
+</body>
+</html>

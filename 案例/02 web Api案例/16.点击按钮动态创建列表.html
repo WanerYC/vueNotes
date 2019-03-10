@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">创建列表</button>
+	<div id="box">
+		<!-- <ul>
+			<li>sfsd</li>
+			<li>sfsd</li>
+			<li>sfsd</li>
+			<li>sfsd</li>
+		</ul> -->
+	</div>
+	<script type="text/javascript">
+
+		var data = ['西游记', '红楼梦', '三国演义', '水浒传'];
+
+		var btn = document.getElementById('btn');
+		var box = document.getElementById('box');
+
+		btn.onclick = function () {
+
+			var str = '<ul>';
+
+			for (var i = 0; i < data.length; i++) {
+				
+				str += '<li>'+data[i]+'</li>';
+
+			}
+
+			str += '</ul>';
+
+			box.innerHTML = str;
+
+			var lis = box.children[0].children;
+
+			for (var i = 0; i < lis.length; i++) {
+
+				lis[i].onmouseover = function () {
+					this.style.backgroundColor = 'red';
+				};
+
+				lis[i].onmouseout = function () {
+					this.style.backgroundColor = ''; // transparent 透明颜色
+				};
+			}
+
+		};
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		var str = 'name=zhangsan&age=20'; // => {name:'zhangsan',age:'20'}
+
+		var result = {};
+
+		// ['name=zhangsan', 'age=20']
+		var ary = str.split('&');
+
+		for (var i = 0; i < ary.length; i++) {
+
+			// ['name','zhangsan']
+			// ['age','20']
+			var ary2 = ary[i].split('=');
+
+			var key = ary2[0];
+			var value = ary2[1];
+
+			result[key] = value;
+
+			// ['name','zhangsan']
+			// ['age','20']
+			// var ary1 = ary[i].split('=');
+
+			// result['name'] = 'zhangsan';
+			// result[ary1[0]] = ary1[1];
+
+		}
+		
+		console.log(result);
+
+	</script>
+</body>
+</html>

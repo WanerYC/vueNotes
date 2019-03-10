@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">创建表格</button>
+	<script type="text/javascript">
+		// 点击按钮创建表格
+		
+		var data = [{
+		    name: '传智播客',
+		    link: 'http://www.itcast.cn'
+		},{
+		    name: '百度',
+		    link: 'http://www.baidu.com'
+		},{
+		    name: '新浪',
+		    link: 'http://www.sina.com'
+		},{
+		    name: '腾讯',
+		    link: 'http://www.qq.com'
+		},{
+		    name: '京东',
+		    link: 'http://www.jd.com'
+		}];
+
+		/*
+			<table border="1">
+				<tr>
+					<td>
+						传智播客
+					</td>
+					<td>
+						<a href="http://www.itcast.cn">传智播客</a>
+					<td>
+				</tr>
+			</table>
+		*/
+	
+		var btn = document.getElementById('btn');
+		
+		btn.onclick = function () {
+
+			var table = document.createElement('table');
+
+			table.border = 1;
+
+			for (var i = 0; i < data.length; i++) {
+
+				var tr = document.createElement('tr');
+
+				var td1 = document.createElement('td');
+
+				td1.innerText = data[i].name;
+
+				var td2 = document.createElement('td');
+
+				td2.innerHTML = '<a href="'+data[i].link+'">'+data[i].name+'</a>';
+
+				tr.appendChild(td1);
+				tr.appendChild(td2);
+
+				table.appendChild(tr);
+
+			}
+
+			document.body.appendChild(table);
+
+		};
+	</script>
+</body>
+</html>

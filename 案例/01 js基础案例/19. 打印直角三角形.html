@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打印直角三角形</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = '';
+		for(var i = 1 ; i <= 10 ; i++){
+			for(var j = 0 ; j < i ; j++){
+				str += '*';
+			}
+			str += '\n';
+		}
+		console.log(str);       // 正三角
+
+
+		var str = '';
+		for(var i = 10; i > 0 ; i--){
+			for(var j = 0 ; j < i ; j++){
+				str += '*';
+			}
+			str += '\n';
+		}
+		console.log(str);       // 倒三角
+	</script>
+</body>
+</html>

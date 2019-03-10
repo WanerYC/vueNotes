@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动端三大事件</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        
+        var box = document.querySelector(".box");
+
+        var disX=0;
+        var disY = 0;
+        box.addEventListener('touchstart', function (e) {
+            // console.log('tocuhstart');
+           disX = e.touches[0].pageX - this.offsetLeft;
+           disY = e.touches[0].pageY - this.offsetTop;
+            // console.log(disX);
+        });
+        box.addEventListener('touchmove', function (e) {
+            // console.log('touchmove');
+            // maxl = e.touches[0].pageX
+            // left = e.touches[0].pageX - disX;
+            // top = e.touches[0].pageY - disY;
+            box.style.left = e.touches[0].pageX - disX + "px";
+            box.style.top = e.touches[0].pageY - disY + "px";
+        });
+        box.addEventListener('touchend', function (e) {
+            console.log('tocuhend');
+        });
+    </script>
+    <!-- <script>
+        var box = document.querySelector(".box");
+        console.log(box);
+
+        var disX = 0;
+        var disY = 0;
+
+        // 当手指在盒子中触摸的时候
+        box.addEventListener('touchstart', function (e) {
+            // console.log('touchstart');
+            disX = e.touches[0].pageX - this.offsetLeft;
+            disY = e.touches[0].pageY - this.offsetTop;
+            
+        });
+
+        // 当手指在盒子中滑动的时候
+        box.addEventListener('touchmove', function (e) {
+            // console.log('touchmove');
+            this.style.left = e.touches[0].pageX - disX + "px";
+            this.style.top = e.touches[0].pageY - disY + "px";
+        });
+
+        // 当手指在盒子中结束触摸的时候
+        box.addEventListener('touchend', function (e) {
+            // console.log('touchend');
+        });
+
+
+        // tocuhcancel 系统停止时跟踪时触发 
+    </script> -->
+   <!--  <script>
+        // 移动端三大事件
+
+        var html = document.documentElement;
+
+        // e.touches 手指的触摸点集合 在 touchstart / touchmove 中存在
+        // e.touches[0].pageX   手指距离页面左侧的距离
+        // e.touches[0].pageY   手指距离页面顶端的距离
+        html.addEventListener('touchstart', function (e) {
+            console.log('touchstart');
+            
+        })
+
+        html.addEventListener('touchmove', function () {
+            console.log('touchmove');
+        })
+
+        html.addEventListener('touchend', function () {
+            console.log('touchend');
+        })
+    </script> -->
+</body>
+</html>

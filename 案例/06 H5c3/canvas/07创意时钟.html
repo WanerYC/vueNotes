@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	 <canvas width="600" height="400"></canvas>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+
+	 	 ctx.arc(300, 200, 150, 0, Math.PI*2);
+	 	 ctx.stroke();
+
+	 	 	get_h(ctx);
+
+		 	//获取分钟对应的角度
+		 	
+		 	get_m();
+
+		 	//获取秒对应的角度
+		 	
+		 	get_s();
+
+	 	 setInterval(function() {
+
+	 	 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	 	 	ctx.beginPath();
+	 	 	//绘制圆
+	 	 	ctx.arc(300, 200, 150, 0, Math.PI*2);
+	 	 	ctx.stroke();
+
+	 	 	
+
+	 	 	//获取当前小时对应的角度
+		 	get_h(ctx);
+
+		 	//获取分钟对应的角度
+		 	
+		 	get_m();
+
+		 	//获取秒对应的角度
+		 	
+		 	get_s();
+		 	
+		 	
+	 	 }, 1000);
+
+	 	 function aTor ( angle ) {
+
+	 	 	return angle*Math.PI/180;
+	 	 }
+
+
+	 	function get_h (ctx) {
+	 	 	 ctx.beginPath();
+	 	 	 var h=new Date().getHours();
+		 	 //从12点钟方向开始绘制点
+		 	 var h_angle=aTor(30*h-90);
+
+		 	 var hx=300+150*Math.cos(h_angle);
+		 	 var hy=200+150*Math.sin(h_angle);
+		 	 //绘制小时点
+		 	 ctx.arc(hx, hy, 10, 0, Math.PI*2);
+		 	 ctx.fillStyle="red";
+		 	 ctx.fill();
+	 	}
+
+
+	 	function get_m () {
+	 		ctx.beginPath();
+	 		var m=new Date().getMinutes();
+	 		var mx=300+150*Math.cos( aTor( 6*m-90 ) );
+	 		var my=200+150*Math.sin( aTor( 6*m-90 ) );
+	 		ctx.arc(mx, my, 8, 0, Math.PI*2);
+	 		ctx.fillStyle="yellow";
+	 		ctx.fill();
+	 	}
+
+	 	function get_s () {
+	 		ctx.beginPath();
+	 		var s=new Date().getSeconds();
+	 		var sx=300+150*Math.cos( aTor( s*6-90 ) );
+	 		var sy=200+150*Math.sin( aTor( s*6-90 ) );
+	 		ctx.fillStyle="blue";
+	 		ctx.arc(sx, sy, 6, 0, Math.PI*2);
+	 		ctx.fill();
+
+	 	}
+
+	 	
+
+	 	 
+	 </script>
+</body>
+</html>

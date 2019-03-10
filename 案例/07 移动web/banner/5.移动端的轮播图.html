@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>移动端的轮播图</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+
+		img {
+			vertical-align: top;
+		}
+
+		.container {
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.container ul {
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.container ul li {
+			width: 100%;
+			float: left;
+		}
+		.container ul li img {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul>
+			<li>
+				<img src="images/l3.jpg">
+			</li>
+			<li>
+				<img src="images/l1.jpg">
+			</li>
+			<li>
+				<img src="images/l2.jpg">
+			</li>
+			<li>
+				<img src="images/l3.jpg">
+			</li>
+			<li>
+				<img src="images/l1.jpg">
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		// 获取ul
+		var ul = document.querySelector('.container ul');
+		// 获取li
+		var lis = ul.children;
+		// 获取li的个数
+		var size = lis.length;
+
+		// 获取屏幕的宽度
+		var sw = document.documentElement.clientWidth;
+
+		// 计算ul的宽度
+		ul.style.width = sw * size + 'px';
+
+		for (var i = 0; i < size; i++) {
+			lis[i].style.width = sw + 'px';
+		}
+
+
+		// 默认是索引为0的图片在显示
+		var index = 1;
+
+		// 表示现在没有在滚动
+		var flag = true;
+
+		// 设置ul的默认位置
+		ul.style.transform = 'translate('+ -index * sw +'px)';
+
+		// 为ul添加左滑右滑事件
+		swipe(ul, {
+			swipeLeft: function () {
+				if (flag) {
+					flag = false;
+					index++;
+					change(true);
+				}
+			},
+			swipeRight: function () {
+				if (flag) {
+					flag = false;
+					index--;
+					change(true);
+				}
+			}
+		});
+
+		// 过渡结束事件需要加浏览器前缀 否则浏览器不支持
+		ul.addEventListener('webkitTransitionEnd', function () {
+				
+			if (index == 4) {
+				index = 1;
+				change(false);
+			}else if (index == 0) {
+				index = 3;
+				change(false);
+			}
+
+			flag = true;
+
+		});
+
+		function change (bool) {
+			if (bool) {
+				ul.style.transition = 'all 1s';
+			}else {
+				ul.style.transition = 'none';
+				
+			}
+			ul.style.transform = 'translate('+ -index * sw +'px)';
+		}
+
+
+		function swipe (el, options) {
+
+			if (el.nodeType && el.nodeType == 1) {
+				// 记录滑动位置
+				var startX = 0;
+				var startY = 0;
+				var moveX = 0;
+				var moveY = 0;
+				// 默认没有触发滑动事件
+				var flag = false;
+
+				// 参数配置项默认值
+				var defaults = {
+					swipeLeft: function () {},
+					swipeRight: function () {},
+					swipeUp: function () {},
+					swipeDown: function () {},
+				}
+
+				for (var attr in options) {
+					defaults[attr] = options[attr];
+				}
+
+				el.addEventListener('touchstart', function (e) {
+					// 记录开始的xy
+					startX = e.touches[0].pageX;
+					startY = e.touches[0].pageY;
+				});
+
+				el.addEventListener('touchmove', function (e) {
+					// 记录结束的xy
+					moveX = e.touches[0].pageX;
+					moveY = e.touches[0].pageY;
+
+					// 触发了滑动事件
+					flag = true;
+				});
+
+				el.addEventListener('touchend', function (e) {
+					if (flag) {
+						// 计算边长
+						var absX = Math.abs(moveX - startX);
+						var absY = Math.abs(moveY - startY);
+						if (absX > absY) {
+							// 水平滑动
+							// console.log('水平');
+
+							if (moveX - startX > 0) {
+								// 向右滑动
+								//console.log('向右滑动');
+								//defaults.swipeRight();
+								defaults.swipeRight.call(el, e);
+							} else {
+								// 向左滑动
+								//console.log('向左滑动');
+								defaults.swipeLeft.call(el, e);
+							}
+
+						}else {
+							// 竖直滑动
+							// console.log('竖直');
+							if (moveY - startY > 0) {
+								// 向下滑动
+								//console.log('向下滑动');
+								defaults.swipeDown.call(el, e);
+							} else {
+								// 向上滑动
+								//console.log('向上滑动');
+								defaults.swipeUp.call(el, e);
+							}
+
+						}
+					}
+
+					// 重置变量
+					flag = false;
+				});
+				
+			} else {
+				console.warn('swipe方法的第一个参数应该是元素对象类型')
+			}
+		}
+
+	</script>
+</body>
+</html>

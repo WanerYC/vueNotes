@@ -1,0 +1,22 @@
+#map {
+  position: relative;
+  margin: 0 auto;
+  width: 800px;
+  height: 600px;
+  border: 1px solid #eee;
+  background-color: lightgray;
+}
+/* 蛇和食物的样式 */
+.snake-head, .snake-body, .food {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  border: dotted 1px black;
+  background-color: red;
+}
+.snake-body {
+  background-color: blue;
+}
+.food {
+  background-color: green;
+}

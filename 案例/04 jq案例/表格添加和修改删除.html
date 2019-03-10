@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格练习</title>
+    <style>
+        .list table {
+            border-collapse: collapse;
+            width: 800px;
+        }
+        th, td {
+            text-align: center;
+            font-weight: normal;
+            /* height: 300px; */
+        }
+    </style>
+    <script src="./jquery//1.x/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            // 1 给""添加"添加事件  将输入框内的内容放入表格内
+            // 2 给"删除"按钮添加事件 删除选中行
+            // 3 给"修改"按钮添加事件 将待修改的行的数据放入对应的输入框
+            // 4 给"编辑"按钮添加事件, 将修改好的内容放入表格
+
+            // -->1 
+            var global_index = 7;
+            $('.input button').click(function () {
+
+                if($(this).attr('data-type') != 'add') {
+                    return;
+                }
+
+                global_index++;
+                // 获取当前表格的数据
+                var username = $('#username').val().trim();
+                var userage = $('#userage').val().trim();
+                var usergender;  // 获取的值 已转换为 男/女 表达
+                $('.gender').each(function (i, v) {
+                    if(v.checked) {
+                        usergender = v.value == 'f' ? '女' : '男';
+                    }
+                });
+
+                // 判断输入框中的内容是否为空  --- 若 空 则不执行下面的内容
+                if(username.length === 0 || userage.length === 0) {
+                    alert('请输入正确的内容');
+                    return;
+                }
+
+                // 创建tr - td 将输入框中的内容放入创建的表格内
+                var html = ['<tr>'];
+                html.push('<td>'+global_index+'</td>');
+                html.push('<td>'+username+'</td>');
+                html.push('<td>'+usergender+'</td>');
+                html.push('<td>'+userage+'</td>');
+                html.push('<td><button class="delete">删除</button><button class="edit">修改</button></td>');
+                html.push('</tr>');
+                // html.join('');
+                // console.log($(html.join('')));
+                $(html.join('')).appendTo('.list tbody');
+                
+                // 清空输入框的内容
+                $('#username').val('');
+                $('#userage').val('');
+                $('.gender:first').prop('checked', true);
+
+
+            });
+            // --> 2 "删除"按钮事件 --- 代理
+            $('.list tbody').on('click', '.delete', function () {
+                $(this).closest('tr').remove();
+            });
+
+            // -->3 "修改"按钮 -- 代理
+            // 将修改行的内容赋值给相应的输入框
+            // "添加"按钮 改为"编辑"
+            $('.list tbody').on('click', '.edit', function () {
+                // 获取当前行的数据
+                var usename = $(this).closest('tr').find('td').eq(1).html();
+                var useage = $(this).closest('tr').find('td').eq(3).html();
+                var usegender = $(this).closest('tr').find('td').eq(2).html();
+                // 将usegender中的数据保存为checked的样式
+                if (usegender === '男') {
+                    $('.gender[value=m]').prop('checked', true);
+                }else {
+                    $('.gender[value=f]').prop('checked', true);
+                }
+                
+                // 将获取到的值 给输入框
+                $('#username').val(usename);
+                $('#userage').val(useage);
+                // $('.gender').val(usegender);
+                if(usegender === '男') {
+                    $('.gender[value=m]').prop('checked', true);
+                }else {
+                    $('.gender[value=f]').prop('checked', true);
+                }
+
+                // 将"添加"按钮 改为"编辑"
+                $('.input button').text('编辑').attr('data-type', 'edit');
+
+                // 保存当前行
+                $(this).closest('tr').prop('title', 'editing');
+
+            });
+
+            // --> 4 "编辑"按钮事件
+            // 获取当前的输入框的值 --- 赋给修改行相应的数据
+            // "添加"按钮 改为"编辑" 
+            // 清空输入框的数据
+            $('.input button').click(function () {
+                
+                if($(this).attr('data-type') != 'edit') {
+                    return;
+                }
+                
+                // 获取当前表格的数据
+                var username = $('#username').val().trim();
+                var userage = $('#userage').val().trim();
+                var usergender;  // 获取的值 已转换为 男/女 表达
+                $('.gender').each(function (i, v) {
+                    if(v.checked) {
+                        usergender = v.value == 'f' ? '女' : '男';
+                    }
+                });
+                
+                // console.log(username);
+                // 判断输入框中的内容是否为空  --- 若 空 则不执行下面的内容
+                if(username.length === 0 || userage.length === 0) {
+                    alert('请输入正确的内容');
+                    return;
+                }
+                
+                // 将获取的数据 放入修改中的行中
+                var $tr = $('[title=editing]');
+                $tr.find('td').eq(1).text(username);
+                $tr.find('td').eq(2).text(usergender);
+                $tr.find('td').eq(3).text(userage);
+                // 去除保存的title值
+                $tr.prop('title', '');
+                
+                $('.input button').text('添加').attr('data-type', 'add');
+
+                // 清空输入框的内容
+                $('#username').val('');
+                $('#userage').val('');
+                $('.gender:first').prop('checked', true);
+            });
+
+
+        })
+
+
+    
+    </script>
+</head>
+<body>
+    <div class="input">
+        <input type="text" id="username" placeholder="请输入姓名"><br>
+        <input type="text" id="userage" placeholder="请输入年龄"><br>
+        请选择性别:
+        <input type="radio" class="gender" name="gender" value="m" checked>男(male)
+        <input type="radio" class="gender" name="gender" value="f">女(female)
+        <br>
+        <!-- 这个按钮的 data-type 属性取值, 可以是 add 或 edit -->
+        <button data-type="add">添加</button>
+    </div>
+    <div class="list">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>jim</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>tom</td>
+                    <td>女</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>lily</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>jack</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>rose</td>
+                    <td>女</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>jim</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>jim</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

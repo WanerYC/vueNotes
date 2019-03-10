@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	 <canvas width="600" height="400"></canvas>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+
+	 	 //绘制第一个120度饼
+	 	 ctx.beginPath();
+	 	 ctx.moveTo(300, 200);
+	 	 ctx.arc(300, 200, 100, 0, aTor(120));
+	 	 ctx.fillStyle="red";
+	 	 ctx.fill();
+
+	 	 //绘制第二个120度
+	 	 ctx.beginPath();
+	 	 ctx.moveTo(300, 200);
+	 	 ctx.arc(300, 200, 100, aTor(120), aTor(240));
+	 	 ctx.fillStyle="yellow";
+	 	 ctx.fill();
+
+	 	 //绘制第三个120度
+	 	 ctx.beginPath();
+	 	 ctx.moveTo(300, 200);
+	 	 ctx.arc(300, 200, 100, aTor(240), aTor(360));
+	 	 ctx.fillStyle="blue";
+	 	 ctx.fill();
+
+
+
+
+
+
+	 	 function aTor ( angle ) {
+	 	 	return angle*Math.PI/180;
+	 	 }
+	 </script>
+</body>
+</html>

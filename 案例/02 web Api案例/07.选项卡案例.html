@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .box {
+        width: 400px;
+        height: 300px;
+        border: 1px solid #ccc;
+        margin: 100px auto;
+        overflow: hidden;
+    }
+
+    .hd {
+        height: 45px;
+    }
+
+    .hd span {
+        display: inline-block;
+        width: 90px;
+        background-color: pink;
+        line-height: 45px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .hd span.current {
+        background-color: purple;
+        color: #FFF;
+    }
+
+    .bd li {
+        height: 255px;
+        background-color: purple;
+        display: none;
+    }
+
+    .bd li.current {
+        display: block;
+        color: #FFF;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="hd">
+            <span class="current">体育</span>
+            <span>娱乐</span>
+            <span>新闻</span>
+            <span>综合</span>
+        </div>
+        <div class="bd">
+            <ul>
+                <li class="current">我是体育模块</li>
+                <li>我是娱乐模块</li>
+                <li>我是新闻模块</li>
+                <li>我是综合模块</li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	/*
+    		1.点击谁让谁有current类名 其他的去掉
+    	*/
+    	
+    	// 选项卡标题
+    	var spans = document.getElementsByTagName('span');
+    	// 选项卡内容
+    	var lis = document.getElementsByTagName('li');
+
+    	// 循环选项卡标题 为每一个标题添加点击事件
+    	for (var i = 0; i < spans.length; i++) {
+    		// 当点击事件发生的时候 执行changeTab函数
+    		spans[i].onclick = changeTab;
+
+    		spans[i].setAttribute('index', i);
+
+    	}
+
+    	function changeTab () {
+
+    		// 选项卡标题的选中效果 让谁选中 就给谁添加current类名
+    		
+    		// 先去掉所有的标题的current类名
+    		for (var i = 0; i < spans.length; i++) {
+    			// 去掉所有选项卡标题的选中效果
+    			spans[i].className = '';
+
+    			// 让所有的选项卡内容隐藏
+    			lis[i].className = '';
+    		}
+    		// 为当前点击的标题添加current类名
+    		this.className = 'current';
+
+    		// 当前点击的选项卡标题的索引
+    		var index = this.getAttribute('index');
+
+    		// 让对应的li显示
+    		lis[index].className = 'current';
+
+    	}
+    </script>
+</body>
+
+</html>

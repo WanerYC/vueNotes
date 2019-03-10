@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入某年某月某日，判断这一天是这一年的第几天</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 2018年1月25日   25天
+		// 2018年3月27日   1月 + 2月 + 27 
+		// 2 月要判定 闰年和平年  如果闰年 +1天
+		function getTime(year,month,day){
+
+			// 1 设置一个数组，保存每个月的天数
+			var arr = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+			// 如果月份为1月，不需要后续的计算了
+			if (month == 1) {
+				return day;
+			}
+
+			// 2 计算前面所有月份天数总和
+			var days = 0;
+			for (var i = 0; i < month-1; i++) {
+				days += arr[i];
+			}
+
+			// 3 将天数总和加上日
+			days += day;
+
+			// 4 检测是否为闰年，如果是闰年，days++
+			if (year%4==0&&year%100!==0||year%400==0 && month>2) {
+				days++;
+			}
+			return days;
+
+		}
+
+
+		console.log(getTime(2018,4,13));     //   103
+	</script>
+</body>
+</html>

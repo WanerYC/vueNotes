@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	 <canvas width="600" height="400"></canvas>
+	 <input type="button" name="" value="move">
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+	 	 var x=y=0;
+	 	 var width=height=0;
+
+	 	 var img=new Image();
+
+	 	 	 img.src="../../04.png";
+
+	 	img.onload=function() {
+	 		width=this.width/4;
+	 		height=this.height/4;
+
+	 		ctx.drawImage(img, x, y, width, height, 300-width/2, 200-height/2, width, height);
+	 	}
+
+
+	 	var btn=document.querySelector("input");
+	 	var i=0;
+	 	var j=0;
+	 		btn.onclick=function() {
+	 			ctx.clearRect(0, 0, 600, 400);
+	 			i++;
+	 			x=(i%4)*width;
+	 			if(i>3){
+	 				j++;
+	 				i=0;
+	 				y=(j%4)*height;
+	 			}
+	 			ctx.drawImage(img, x, y, width, height, 300-width/2, 200-height/2, width, height);
+	 		}
+	 </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li>西游记</li>
+		<li>红楼梦</li>
+		<li>水浒传</li>
+		<li>三国演义</li>
+	</ul>
+	<script type="text/javascript">
+		// 获取列表元素集合
+		var lis = document.getElementsByTagName('li');
+
+		// 隔行换色
+		for (var i = 0; i < lis.length; i++) {
+
+			if (i % 2 == 0) {
+				lis[i].style.backgroundColor = 'red';
+			}else{
+				lis[i].style.backgroundColor = 'green';
+			}
+		}
+
+		// 高亮
+		for (var i = 0; i < lis.length; i++) {
+
+			// 鼠标移入的时候 执行mouseoverHandler函数
+			lis[i].onmouseover = mouseoverHandler;
+
+			// 鼠标移出的时候 执行mouseoutHandler函数
+			lis[i].onmouseout = mouseoutHandler;
+
+		}
+
+		// 在鼠标移入li的时候 记录一下当前li的背景颜色
+		
+		var oldColor = '';
+
+		function mouseoverHandler () {
+
+			// 记录一下当前li的背景颜色
+			oldColor = this.style.backgroundColor;
+
+			this.style.backgroundColor = 'yellow';
+
+		}
+
+		function mouseoutHandler () {
+
+			this.style.backgroundColor = oldColor;
+
+		}
+		
+	</script>
+</body>
+</html> 

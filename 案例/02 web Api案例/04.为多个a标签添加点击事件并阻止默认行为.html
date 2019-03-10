@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="http://www.baidu.com">111111</a>
+	<a href="http://www.itcast.cn">222222</a>
+	<a href="http://www.sina.cn">333333</a>
+	<a href="http://www.jd.com">444444</a>
+
+	<script type="text/javascript">
+		
+		var links = document.getElementsByTagName('a');
+
+		for (var i = 0; i < links.length; i++) {
+
+			links[i].onclick = clickFn;
+
+		}
+
+		function clickFn () {
+
+			console.log(this.href);
+
+			return false;
+
+		}
+	</script>
+</body>
+</html>

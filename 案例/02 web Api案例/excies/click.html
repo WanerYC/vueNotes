@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.14</title>
+</head>
+<body>
+    <!-- 
+        <button class="btn">点击</button>
+    <button class="btn">点击</button>
+    <button class="btn">点击</button>
+    <button class="btn">点击</button>
+    <button class="btn">点击</button>
+    <button class="btn">点击</button>
+    <script>
+        var btns = document.getElementsByClassName("btn");
+        // console.log(btns);
+        // 给每个按钮添加点击事件
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                alert("hello");
+            }
+        }
+    </script> 
+-->
+
+    <!-- 点击按钮修改链接和文字 -->
+   <!--  
+       <button class="btn">点击</button>
+        <a href="http://www.baidu.com" class="baidu">百度</a>
+    <script>
+        // 获取元素
+        var btn = document.getElementsByClassName("btn")[0];
+        console.log(btn);
+        var baidu = document.getElementsByClassName("baidu")[0];
+        console.log(baidu);
+        btn.onclick = function () {
+            baidu.href = 'http://www.itcast.com';
+            baidu.innerText = '黑马程序员';
+        }
+    </script> 
+    -->
+
+    <!-- 美女相册 -->
+
+    <!-- 找出字符串中出现次数最多的字符以及出现的次数 -->
+    <!-- 
+        1 统计这个字符串中每一字符出现的次数 将统计结果发乳一个对象中
+        先准备一个空对象
+        遍历字符串 判断当前遍历的字符是不是这个对象的属性 如果不是 那么将当前遍历的字符作为这个对象的属性 并赋值加1 
+        如果是对象的属性 将对象的属性值取出 并且加1 重新赋值给这个属性
+        2 找出次数的最大值
+    -->
+    <!-- <script>
+        var str = 'asdadffjksfhskiffaasdaksjddccrevh';
+        var result = {};
+
+        for (var i = 0; i < str.length; i++) {
+            var item = str[i];
+
+            // 判断对象中有么有这个属性
+            if( result[item]) {
+
+                result[item] = result[item] +1;
+            }else {
+                result[item] = 1;
+            }
+        }
+        console.log(result);
+        
+        // 假设出现次数最多的字符
+        var manyChar = '';
+        // 假设出现最多的次数
+        var manyFrequency = 0;
+        
+        // 遍历对象
+        for (var attr in result) {
+            if (manyFrequency < result[attr]) {
+                manyFrequency = result[attr];
+                manyChar = attr;
+            }
+        }
+
+        console.log(manyChar);
+        console.log(manyFrequency);
+
+    </script> -->
+
+    <!-- <script>
+        // 找出一个字符串中字符重复最多的 及次数
+        var str = 'asdafgdfkjkhkdhfsdfsjcnkrhcjmihichwkchkhvkucnkckrck';
+        // 先遍历字符串 将出现的每个字符及次数 保存在一个空对象中
+        var result = {};
+        
+        for (var i = 0; i < str.length; i++) {
+            var item = str[i];
+            if (result[item]) {
+                result[item] = result[item] + 1;
+            }else {
+                result[item] = 1;
+            }
+        }
+        console.log(result);
+
+        // 假设出现最多的字符
+        var strs ='';
+        // 假设出现最多的次数
+        var num = 0;
+        // 遍历上面的空对象
+
+        for (var attr  in result ) {
+            if (num < result[attr]) {
+                num = result[attr]
+                strs = attr;
+            }
+            // console.log(result[attr]);
+
+        }
+        console.log(num);
+        console.log(strs);
+
+
+
+
+
+
+    </script> -->
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	 <canvas width="600" height="400"></canvas>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+	 	 var angle=[30,60,90,45,45,20,70];
+	 	 var colors=["red","blue","yellow","pink","orange","black"];
+	 	 //开始角度
+	 	 var sangle=0;
+
+	 	 for(var i=0; i<angle.length; i++) {
+	 	 	ctx.beginPath();
+	 	 	ctx.moveTo(300, 200);
+	 	 	ctx.arc(300, 200, 100, aTor(sangle), aTor(sangle+=angle[i]));
+	 	 	ctx.fillStyle=colors[i];
+	 	 	ctx.fill();
+	 	 }
+
+
+	 	 function aTor ( angle ) {
+	 	 	return angle*Math.PI/180;
+	 	 }
+
+	 </script>
+</body>
+</html>

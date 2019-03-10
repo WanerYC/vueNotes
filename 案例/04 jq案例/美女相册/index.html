@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #ccc;
+        }
+        .imglist, .show {
+            width: 1000px;
+            margin: 10px auto;
+        }
+        .imglist img {
+            width: 180px;
+            margin: 0 8px;
+        }
+        .show img {
+            width: 1000px;
+        }
+    </style>
+    <script src="../1.x/jquery-1.12.4.js"></script>
+    <script>
+        $( function () {
+
+            // 1. 现在是学习阶段, 尽可能使用 jq 的方法
+            // $( '.c' ).click( function () {
+            //     var bigUrl = $( this ).prop( 'alt' );
+            //     $( '#imgbig' ).prop( 'src', bigUrl );
+            // } );
+
+
+            // 2. 在生产环境中, 越简单越好( 不能影响阅读 )
+            // 如果我来写这个案例
+            $( '.c' ).click( function () {
+                $( '#imgbig' ).prop( 'src', this.alt );
+            } );
+        } );
+    
+    </script>
+</head>
+<body>
+    <div class="imglist">
+        <img class="c" src="./mm/s1.jpg" alt="./mm/b1.jpg">
+        <img class="c" src="./mm/s2.jpg" alt="./mm/b2.jpg">
+        <img class="c" src="./mm/s3.jpg" alt="./mm/b3.jpg">
+        <img class="c" src="./mm/s4.jpg" alt="./mm/b4.jpg">
+        <img class="c" src="./mm/s5.jpg" alt="./mm/b5.jpg">
+    </div>
+    <div class="show">
+        <img id="imgbig" src="" alt="">
+    </div>
+</body>
+</html>

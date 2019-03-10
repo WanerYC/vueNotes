@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>求200-300之间所有的奇数的和（用continue）</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var sum = 0;
+		for(var i = 200 ; i <= 300 ; i++){
+			if (i % 2 == 0) {
+				continue;
+			}
+			sum += i;
+		}
+		console.log(sum);     // 12500 
+	</script>
+</body>
+</html>

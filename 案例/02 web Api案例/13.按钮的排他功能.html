@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>回家种地</button>
+	<button>回家种地</button>
+	<button>回家种地</button>
+	<button>回家种地</button>
+	<script type="text/javascript">
+		var btns = document.getElementsByTagName('button');
+
+		for (var i = 0; i < btns.length; i++) {
+			btns[i].onclick = clickFn;
+		}
+
+		// 先将所有的按钮变成 回家种地
+		// 再将当前点击的按钮变成 年薪百万
+
+		function clickFn () {
+
+			for (var i = 0; i < btns.length; i++) {
+				btns[i].innerText = '回家种地';
+			}
+
+			// this当前点击的按钮
+			this.innerText = '年薪百万';
+
+		}
+	</script>
+</body>
+</html>

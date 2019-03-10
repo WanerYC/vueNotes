@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>要求用户输入用户名和密码</title>
+</head>
+<body>
+	用户名<input type="text" name="" id="inp">
+	密码<input type="password" name="" id="pas">
+	<input type="submit" name="" value="submit" id="submit">
+	<script type="text/javascript">
+		//要求用户输入用户名和密码
+		//如果输入的用户名不是'admin'，或密码不是'123456'时要求重新输入
+		
+		var inp = document.getElementById('inp');
+		var password = document.getElementById('pas');
+		var submit = document.getElementById('submit');
+
+		submit.onclick = function(){
+			if (inp.value !== 'admin' || password.value !== '123456') {
+				alert('重新输入');
+			}
+			else{
+				alert('登录成功');
+			}
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格的增删</title>
+    <style>
+        .list table {
+            border-collapse: collapse;
+            width: 800px;
+        }
+
+        th,
+        td {
+            text-align: center;
+            font-weight: normal;
+            /* height: 300px; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input">
+        <input type="text" id="username" placeholder="请输入姓名">
+        <br>
+        <input type="text" id="userage" placeholder="请输入年龄">
+        <br> 请选择性别:
+        <input type="radio" class="gender" name="gender" value="m" checked>男(male)
+        <input type="radio" class="gender" name="gender" value="f">女(female)
+        <br>
+        <!-- 这个按钮的 data-type 属性取值, 可以是 add 或 edit -->
+        <button data-type="add">添加</button>
+    </div>
+    <div class="list">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>jim</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>tom</td>
+                    <td>女</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>lily</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>jack</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>rose</td>
+                    <td>女</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>jim</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>jim</td>
+                    <td>男</td>
+                    <td>19</td>
+                    <td>
+                        <button class="delete">删除</button>
+                        <button class="edit">修改</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="../jquery/1.x/jquery-1.12.4.min.js"></script>
+<script>
+    $(function() {
+        // alert(1);
+        
+        // 定义一个常量 用于表单的编号
+        var global_index = 7;
+
+        // 先实现添加按钮功能
+        // 获取元素  获取表单数据  将表单数据追加到表格内
+        // var addBtn = document.querySelector('.input button');
+        // console.log(addBtn);
+        // 必须为jq对象
+        $('.input button').click(function() {
+            // alert(1);
+            global_index++;
+            // 获取表单元素
+            var username = $('#username').val().trim();
+            console.log(username);
+            var userage = $('#userage').val().trim();
+            
+            // 获取性别
+            var usergender;
+            $('.gender').each(function(i, v) {
+                if(v.checked) {
+                    usergender = v.value == 'f' ? '女' : '男';
+                }
+            });
+            // console.log(usergender);
+            
+            // 判断输入框中的内容,不能为空
+            if(userage.length == 0 || username.length == 0) {
+                alert('请输入内容');
+                return;
+            }
+
+            // 创建相应的tr td 将输入框中内容放入
+            var html = ['<tr>'];
+            html.push('<td>'+global_index+'</td>');
+            html.push('<td>'+username+'</td>');
+            html.push('<td>'+usergender+'</td>');
+            html.push(`<td>${userage}</td>`);
+            html.push('<td><button class="delete">删除</button><button class="edit" data-index="global_index">修改</button></td>');
+            html.push('</tr>');
+            console.log(html.join(''));
+            $(html.join('')).appendTo('.list tbody');
+            
+            // 清空输入框的内容
+            $('#username').val('');
+            $('#userage').val('');
+            $('.gender:first').prop('checked', true);
+        });
+        // 删除按钮功能
+        $('tbody').on('click','.delete', function() {
+            // console.log(this);
+            // 获取this的的父级tr
+            // $(this).parents('tr').remove();
+            $(this).closest('tr').remove();
+        });
+
+        // 修改按钮功能
+        $('tbody').on('click','.edit',function () {
+            // 添加按钮变为编辑按钮
+            $('.input button').html('编辑');
+            // 获取当前表格的数据
+            var username = $(this).closest('tr').find('td').eq(1).html();
+            var userage = $(this).closest('tr').find('td').eq(3).html();
+            var gender = $(this).closest('tr').find('td').eq(2).html()== '男' ? 'm' : 'f';
+            console.log(gender);
+
+            // 将上面获取的数据填入表单
+            $('#username').val(username);
+            $('#userage').val(userage);
+            // 性别用value属性来
+            if (gender == 'f') {
+                $('.gender[value=f]').prop('checked', true);
+            }else {
+                $('.gender[value=m]').prop('checked', true);
+            }
+
+        });
+
+
+    });
+</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	 <canvas width="600" height="400"></canvas>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+
+	 	 //随机生成多少个饼
+	 	 var cakes=getRandom(3,10);
+
+	 	 // 随机产生每一个饼对应的比例
+	 	 var ary=[];
+	 	 var angle=0;
+	 	 var sum=0;
+	 	 for(var i=0; i< cakes; i++) {
+	 	 	angle=getRandom(0,360);
+	 	 	ary.push(angle);
+	 	 }
+
+	 	 //求总份数
+	 	 for(var i=0; i<ary.length; i++) {
+	 	 	sum+=ary[i];
+	 	 }
+	 	 //获取每一份对应的角度
+	 	 //总份数：360= 每一份：每一份对应的角度
+	 	 var angle_ary=[];
+	 	 for ( var i=0; i<ary.length; i++) {
+	 	 	angle_ary.push(aTor(360*ary[i]/sum));
+	 	 }
+
+
+	 	//开始绘制
+	 	var start=0;
+	 	for(var i=0; i<angle_ary.length; i++) {
+	 		ctx.beginPath();
+	 		ctx.moveTo(300, 200);
+	 		ctx.fillStyle='rgb('+Math.floor(255*Math.random())+','+ Math.floor(255*Math.random())+','+ Math.floor(255*Math.random())+')';
+	 		ctx.arc(300, 200, 100, start, start+=angle_ary[i] );
+	 		ctx.fill();
+	 	}
+
+	 
+
+
+
+
+	 	
+	 	
+
+	 	//随机函数
+	 	function getRandom (min, max) {
+
+	 		return Math.floor( (max-min)*Math.random() )+min;
+	 	}
+
+	 	//获取角度对应的弧度
+	 	function aTor ( angle ) {
+
+	 		return angle*Math.PI/180;
+	 	}
+
+	 </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid #ccc;
+		}
+
+		div {
+			width: 600px;
+			height: 400px;
+			margin: 100px auto;
+		}
+	</style>
+</head>
+<body>
+	 <div><canvas width="600" height="400"></canvas></div>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+
+	 	 //绘制横线
+	 	 var h=20;
+	 	 var h_number=canvas.height/h;
+
+	 	 ctx.strokeStyle="#ccc";
+	 	 for(var i= 0; i< h_number; i++ ) {
+	 	 	ctx.beginPath();
+	 	 	ctx.moveTo(0, h*i);
+	 	 	ctx.lineTo(600, h*i);
+	 	 	ctx.stroke();
+	 	 }
+
+	 	 //绘制竖线
+	 	 var w_number=canvas.width/h;
+	 	 for(var i=0; i< w_number; i++) {
+	 	 	ctx.beginPath();
+	 	 	ctx.moveTo(h*i, 0);
+	 	 	ctx.lineTo(h*i, 400);
+	 	 	ctx.stroke();
+	 	 }
+
+	 	 ctx.beginPath();
+
+
+
+
+
+	 	 var pl=20,pt=20,pr=20,pb=20;
+	 	 //绘制左边线
+	 	 ctx.moveTo(pl, pt);
+	 	 ctx.lineTo(pl, canvas.height-pt);
+	 	 ctx.strokeStyle="blue";
+	 	 ctx.stroke();
+
+	 	 //绘制右侧线
+	 	 ctx.beginPath();
+	 	 ctx.moveTo(pl, canvas.height-pt);
+	 	 ctx.lineTo(canvas.width-pr, canvas.height-pt);
+	 	 ctx.strokeStyle="blue";
+	 	 ctx.stroke();
+
+
+	 	 //绘制三角形
+	 	 ctx.beginPath();
+	 	 ctx.fillStyle="blue";
+	 	 ctx.moveTo(pl, pt);
+	 	 ctx.lineTo(pl-5, pt+10);
+	 	 ctx.lineTo(pl+5, pt+10);
+	 	 ctx.closePath();
+	 	 ctx.fill();
+
+
+	 	 //绘制三角形
+	 	 ctx.beginPath();
+	 	 ctx.moveTo(canvas.width-pr,canvas.height-pb);
+	 	 ctx.lineTo(canvas.width-pr-10, canvas.height-pb-5);
+	 	 ctx.lineTo(canvas.width-pr-10, canvas.height-pb+5);
+	 	 ctx.fillStyle="blue";
+	 	 ctx.fill();
+
+
+
+
+	 </script>
+</body>
+</html>

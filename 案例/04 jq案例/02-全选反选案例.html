@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../jquery/1.x/jquery-1.12.4.js"></script>
+    <script>
+        $( function () {
+
+            // 1> 全选
+            // 1. 获得按钮
+            // 2. 绑定事件
+            // 3. 获得复选框
+            // 4. 设置复选框的属性 checked 为 true
+            $( '#all' ).click( function () {
+                $( 'input[type=checkbox]' ).prop( 'checked', true );
+            } );
+
+            $( '#no' ).click( function () {
+                $( 'input[type=checkbox]' ).prop( 'checked', false );
+            } );
+
+            $( '#des' ).click( function () {
+                $( 'input[type=checkbox]' ).each(function ( i, v ) {
+                    
+                    v.checked = !v.checked;
+
+                    // $( v ).prop( 'checked', !$( v ).prop( 'checked' ) );
+                });
+            } );
+
+
+        } );
+    
+    </script>
+</head>
+<body>
+    <input type="checkbox">测试项1 <br>
+    <input type="checkbox">测试项2 <br>
+    <input type="checkbox">测试项3 <br>
+    <input type="checkbox">测试项4 <br>
+    <input type="checkbox">测试项5 <br>
+    <input type="button" value="全选" id="all">
+    <input type="button" value="全不选" id="no">
+    <input type="button" value="返选" id="des">
+
+    
+</body>
+</html>

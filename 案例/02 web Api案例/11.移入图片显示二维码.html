@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .nodeSmall {
+        width: 50px;
+        height: 50px;
+        background: url(images/bgs.png) no-repeat -159px -51px;
+        position: fixed;
+        right: 10px;
+        top: 40%;
+    }
+
+    .erweima {
+        position: absolute;
+        top: 0;
+        left: -150px;
+    }
+
+    .nodeSmall a {
+        display: block;
+        width: 50px;
+        height: 50px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="nodeSmall" id="node_small">
+        <a href="#"></a>
+        <div class="erweima hide" id="er">
+            <img src="images/456.png" alt="" />
+        </div>
+    </div>
+    <script type="text/javascript">
+    	var node_small = document.getElementById('node_small');
+    	var er = document.getElementById('er');
+
+    	/*
+    		onmouseover 鼠标移入事件
+    		onmouseout  属性移出事件
+    	*/
+
+
+    	node_small.onmouseover = function () {
+    		er.className = 'erweima';
+    	};
+
+    	node_small.onmouseout = function () {
+    		er.className = 'erweima hide';
+    	};
+    </script>
+</body>
+
+</html>

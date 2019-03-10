@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>手风琴案例</title>
+    <style>
+    ul {
+        list-style: none;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    div {
+        width: 1150px;
+        height: 400px;
+        margin: 50px auto;
+        border: 1px solid red;
+        overflow: hidden;
+    }
+
+    div li {
+        width: 240px;
+        height: 400px;
+        float: left;
+    }
+
+    div ul {
+        width: 1300px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        
+        var lis = document.getElementById('box').children[0].children;
+
+        for (var i=0; i < lis.length; i++) {
+            
+            // 为每一个li设置背景图片
+            lis[i].style.backgroundImage = 'url(images/shoufengqin/'+ (i + 1) +'.jpg)';
+
+            lis[i].onmouseover = toBig;
+
+            lis[i].onmouseout = toNormal;
+
+        }
+
+        function toBig () {
+
+            for (var i = 0; i < lis.length; i++) {
+                // lis[i].style.width = '100px';
+                animate(lis[i], 'width', 100);
+            }
+
+           // this.style.width = '800px';
+           animate(this, 'width', 800);
+        }
+
+        function toNormal () {
+
+            for (var i = 0; i < lis.length; i++) {
+                // lis[i].style.width = '240px';
+                animate(lis[i], 'width', 240);
+            }
+
+        }
+
+
+
+        function animate (element, attr, target, fn) {
+
+            // 清除上一次的定时器
+            clearInterval(element.timerId);
+
+            // 开启定时器 让元素开始运动
+            element.timerId = setInterval(function () {
+
+                // 元素的当前值
+                var current = parseInt(getComputedStyle(element)[attr]);
+
+                // getComputedStyle(element)[attr] =>  100px
+
+                // parseInt(100px)  => 100
+
+
+                // 计算运动速度
+                var speed = 0;
+
+                // 如果当前值 小于 目标点 向上取整
+                if (current < target) {
+                    speed = Math.ceil((target - current) / 10);
+                }else{
+                    // 如果当前值 大于目标点  向下取整
+                    speed = Math.floor((target - current) / 10);
+                }
+
+                // 如果当前值等于目标点
+                if (current == target) {
+
+                    // 清除定时器 让运动停止
+                    clearInterval(element.timerId);
+
+                    // 如果传递了fn函数 就调用
+                    if (fn) {
+                        fn();
+                    }
+                    
+
+                } else {
+
+                    // 元素朝着目标点进行运动
+                    element.style[attr] = current + speed + 'px';
+
+                }
+
+            }, 30);
+
+        }
+
+    </script>
+</body>
+
+</html>

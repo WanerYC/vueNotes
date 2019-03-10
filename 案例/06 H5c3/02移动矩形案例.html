@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	 <canvas width="600" height="400"></canvas>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+	 
+
+	 	 //动画开始位置
+	 	 var start_x=0;
+	 	 //动画每次移动的距离大小
+	 	 var x_step=5;
+
+	 	 //设置动画移动的方向
+	 	 var direction=1;
+
+	 	 //开始动画
+	 	 var id=setInterval(function() {
+	 	 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	 	 	ctx.fillRect(start_x, 100, 200, 100);
+	 	 	start_x+=x_step*direction;
+	 	 	if(start_x>=canvas.width-200) {
+	 	 		direction=-1;
+	 	 	}else if (start_x<0) {
+	 	 		direction=1;
+	 	 	}
+	 	 },20);
+	 </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>求任意3个数中的最大值</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function getMax(n,m){
+			if (n>m) {
+				return n;
+			}
+			else{
+				return m;
+			}
+			//  return n>m ? n : m ;
+		}
+		function getMax1(a,b,c){
+			var max = getMax(a,b);
+			max = getMax(max,c);
+			return max;
+		}
+		console.log(getMax1(5,61,250));   // 250 
+	</script>
+</body>
+</html>

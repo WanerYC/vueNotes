@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: "Microft YaHei";
+        font-size: 16px;
+    }
+
+    input,
+    button {
+        float: left;
+        font-size: 16px;
+        outline: none;
+    }
+
+    input {
+        width: 540px;
+        height: 40px;
+        border: 1px solid #707070;
+        border-right: none;
+        padding: 0 15px;
+    }
+
+    button {
+        width: 80px;
+        height: 42px;
+    }
+
+    .box {
+        overflow: hidden;
+        width: 652px;
+        margin: 150px auto 0 auto;
+    }
+
+    ul {
+        width: 652px;
+        margin: 0 auto;
+        list-style: none;
+    }
+
+    li {
+        padding: 8px 10px;
+    }
+
+    .even {
+        background: rgb(250, 250, 250);
+    }
+
+    .odd {
+        background: rgba(235, 235, 235);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text" id="search">
+        <button id="btn">搜索</button>
+    </div>
+    <ul id="list">
+       <!--  <li class="even">今天天气很不错</li>
+       		<li class="odd">今天天气很不错</li>
+       		<li class="even">今天天气很不错</li>
+       		<li class="odd">今天天气很不错</li>
+       		<li class="even">今天天气很不错</li>
+       		<li class="odd">今天天气很不错</li> -->
+    </ul>
+    <script type="text/javascript">
+    	var data = [
+			'JavaScript高级程序设计',
+			'JavaScript权威指南',
+			'零基础学JavaScript',
+			'JavaScript DOM编程艺术',
+			'CSS世界',
+			'CSS权威指南',
+			'CSS揭秘',
+			'HTML权威指南'
+		];
+
+		/*
+			1.当用户在文本框中输入内容的时候 我们要拿到用户输入的内容
+				
+				onkeyup 当键盘按键抬起的时候
+
+			2.循环准备好的数据 看有哪一条数据包含了用户输入的关键字
+			3.将包含的数据拼接成HTML 并展示在页面中
+		*/
+		
+		var search = document.getElementById('search');
+		var list = document.getElementById('list');
+
+		// 当用户在文本框中输入内容的时候
+		search.onkeyup = function () {
+
+			var result = [];
+
+			// 用户输入的内容
+			var keyword = this.value;
+
+			// 去除关键字两边的空格
+			keyword = keyword.trim();
+
+			// 如果用户输入的内容不为真
+			if (!keyword) {
+
+				list.innerHTML = '';
+
+				return;
+			}
+
+			for (var i = 0; i < data.length; i++) {
+
+				// 判断当前数据是否包含用户输入的内容
+				if (data[i].indexOf(keyword) != -1) {
+
+					result.push(data[i]);
+
+				}
+
+			}
+
+			// result数组中包含了符合条件的数据
+			// console.log(result);
+			
+			var str = '';
+
+			for (var i = 0; i < result.length; i++) {
+				
+				if (i % 2 == 0) {
+					str += '<li class="even">'+result[i]+'</li>';
+				}else{
+					str += '<li class="odd">'+result[i]+'</li>';
+				}
+				
+			}
+
+			list.innerHTML = str;
+
+			var lis = list.children;
+
+			for (var i = 0; i < lis.length; i++) {
+
+				lis[i].onmouseover = highLight;
+
+				lis[i].onmouseout = cancelLight;
+
+			}
+			
+
+		};
+
+		// var oldColor = '';
+
+		function highLight () {
+
+			// oldColor = this.style.backgroundColor;
+
+			this.style.backgroundColor = 'skyblue';
+		}
+
+		function cancelLight () {
+
+			this.style.backgroundColor = '';
+
+		}
+
+    </script>
+</body>
+
+</html>

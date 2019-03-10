@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>同时求1-100之间所有偶数和奇数的和</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var even = 0 , odd = 0;
+		for(var i = 1 ; i <= 100 ; i++){
+			if (i % 2 == 0) {
+				even += i;
+			}
+			else{
+				odd += i;
+			}
+		}
+		console.log(even,odd);  // 2550   2500 
+	</script>
+</body>
+</html>

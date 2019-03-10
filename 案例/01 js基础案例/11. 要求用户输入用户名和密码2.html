@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>要求用户输入用户名和密码2</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var username = prompt('输入用户名');
+		var password = prompt('输入密码');
+
+		while (username !== 'admin' || password !== '123456') {
+			username = prompt('请输入用户名');
+			password = prompt('请输入密码');
+		}
+		alert('输入正确，可以登录');
+	</script>
+</body>
+</html>

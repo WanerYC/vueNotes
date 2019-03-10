@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断一个数是否是质数</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function judgePrime(num){
+			if (num == 1) {
+				return num+'不是质数';
+			}
+			var count = 0 ;
+			for(var i = 2 ; i < num ; i++){
+				if(num % i == 0){
+					count ++ ;
+				}
+			}
+			if (count === 0) {
+				return num+'是质数';
+			}
+			else{
+				return num+'不是质数';
+			}
+		}
+		console.log(judgePrime(9));   // 不是质数
+
+
+		function isZS(num){
+			if (num == 1) {
+				return num +'不是质数';
+			}
+			for(var i = 2 ; i < num ; i ++){
+				if (num % i == 0) {
+					break;
+				}
+			}
+			if (i === num) {
+				return num+'是质数';
+			}
+			else{
+				return num+'不是质数';
+			}
+		}
+		console.log(isZS(2));
+	</script>
+</body>
+</html>

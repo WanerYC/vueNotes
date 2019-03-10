@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    body {
+        font-family: "Helvetica", "Arial", serif;
+        color: #333;
+        background-color: #ccc;
+        margin: 1em 10%;
+    }
+
+    h1 {
+        color: #333;
+        background-color: transparent;
+    }
+
+    a {
+        color: #c60;
+        background-color: transparent;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        float: left;
+        padding: 1em;
+        list-style: none;
+    }
+
+    #imagegallery {
+        list-style: none;
+        overflow: hidden;
+    }
+
+    #imagegallery li {
+        margin: 0px 20px 20px 0px;
+        padding: 0px;
+        display: inline;
+    }
+
+    #imagegallery li a img {
+        border: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <h2>美女画廊</h2>
+    <ul id="imagegallery">
+        <li>
+            <a href="images/1.jpg" title="美女A">
+	            <img src="images/1-small.jpg" width="100" alt="美女1"/>
+	        </a>
+        </li>
+        <li>
+            <a href="images/2.jpg" title="美女B">
+	            <img src="images/2-small.jpg" width="100" alt="美女2"/>
+	        </a>
+        </li>
+        <li>
+            <a href="images/3.jpg" title="美女C">
+	            <img src="images/3-small.jpg" width="100" alt="美女3"/>
+	        </a>
+        </li>
+        <li>
+            <a href="images/4.jpg" title="美女D">
+	            <img src="images/4-small.jpg" width="100" alt="美女4"/>
+	        </a>
+        </li>
+    </ul>
+    <img id="image" src="images/placeholder.png" alt="" width="450" />
+    <p id="des">选择一个图片</p>
+    <script type="text/javascript">
+    	/*
+    		1. 获取小图外层的A标签
+    		2. 为A标签添加点击事件
+    		3. 在点击事件发生的时候 获取当前点击的A标签的href属性和title属性
+    		4. 将大图路径赋值给图片的src属性
+    		5. 将图片标题赋值给p元素
+    	*/
+    
+    	var imagegallery = document.getElementById('imagegallery');
+		var links = imagegallery.getElementsByTagName('a');
+
+		// 循环元素集合 为集合中的每一个元素添加点击事件
+		for (var i = 0; i < links.length; i++) {
+			// 在点击事件发生的时候执行changeImage函数
+			links[i].onclick = changeImage;
+
+		}
+
+		function changeImage () {
+
+			// 获取大图路径
+			var bigImg = this.href;
+			// 获取大图标题
+			var imgTit = this.title;
+			
+			// 获取大图元素对象
+			var image = document.getElementById('image');
+
+			// 为大图元素 赋值大图路径
+			image.src = bigImg;
+
+			// 获取放置大图标题的元素
+			var des = document.getElementById('des');
+
+			// 设置大图标题
+			des.innerText = imgTit;
+
+			return false;
+
+		}
+    </script>
+</body>
+
+</html>

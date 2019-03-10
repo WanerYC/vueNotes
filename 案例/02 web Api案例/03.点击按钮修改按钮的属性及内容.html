@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">按钮</button>
+	<script type="text/javascript">
+
+		// 点击按钮修改按钮中的文字及ID属性
+		var btn = document.getElementById('btn');
+
+		// btn.onclick = function () {
+
+		// 	btn.innerText = '修改后的值';
+
+		// 	btn.id = 'abc';
+
+		// 	console.log(btn);
+
+		// };
+		
+		// 事件处理函数中的this指向 发生事件的元素
+
+		btn.onclick = function () {
+
+			console.log(this);
+			console.log(btn);
+
+			// btn.innerText = '修改后的值';
+
+			this.innerText = '用this对象修改的值';
+
+		};
+	</script>
+</body>
+</html>

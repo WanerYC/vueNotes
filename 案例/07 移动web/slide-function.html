@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装滑动函数</title>
+</head>
+<body>
+    <script>
+
+        // 调用函数 
+        var html = document.documentElement;
+        swipe(html, {
+            swipeLift: function () {
+                alert('左');
+            },
+            swipeRight: function () {
+                console.log('右');
+            },
+            swipeUp: function (e) {
+                console.log('上');
+                console.log(this);
+                console.log(e);
+            }
+            // swipeDown: function () {
+            //     alert('下');
+            // }
+        });
+        
+        // 封装滑动  用touch三大事件来模拟
+        // 通过事件源e中的touches[0]属性来获取pageX, pageY
+        // 1. 获取开始触屏时的startx,starty坐标
+        // 2. 获取滑动最后的movex,movey坐标
+        // movex -  startx 获取滑动的x轴的长度 与 movey - startY 获取滑动的y轴的长度 相比 判断水平滑动还是竖直滑动
+        // 在上面的判断下 判断 shartx 与 movex 来判断向左向右  /  判断starty 与 movey 来判断向上向下滑动
+        // 难点: 
+        // 1   调用中的事件e 和 this的指向
+        // 2   判断用户传入的第一个参数是否是元素节点
+        // 3   滑动的成立 必须有滑动屏幕的事件被触发
+
+        function swipe (el, options) {
+
+            // 判断 传入的第一个参数是否为元素节点
+            if (el.nodeType && el.nodeType == 1) {
+                // 定义变量 记录滑动的xy的值
+                var startX = 0, startY = 0;
+                var moveX = 0, moveY = 0;
+                // 定义变量来监听 屏幕滑动事件是否触发
+                var flag = false;
+
+                // 定一个默认的函数
+                var defaults = {
+                    swipeLift: function () {},
+                    swipeRight: function () {},
+                    swipeUp: function () {},
+                    swipeDown: function () {}
+                }
+
+                // 将用户传入的options 赋值给 defaults
+                for(var attr in options) {
+                    defaults[attr] = options[attr];
+                }
+
+                // 触屏
+                el.addEventListener('touchstart', function (e) {
+                    startX = e.touches[0].pageX;
+                    startY = e.touches[0].pageY;
+                });
+                // 滑动屏幕
+                el.addEventListener('touchmove', function (e) {
+                    flag = true;
+                    moveX = e.touches[0].pageX;
+                    moveY = e.touches[0].pageY;
+                });
+                // 离开触屏
+                el.addEventListener('touchend', function (e) {
+                    if (flag) {
+                        var absX = Math.abs(moveX - startX);
+                        var absY = Math.abs(moveY - startY);
+
+                        if (absX > absY) {
+                            // 水平滑动
+                            if (moveX > startX) {
+                                // 向右滑动
+                                // console.log('向右滑动');
+                                defaults.swipeRight.call(el,e);
+                            }else {
+                                // 向左滑动
+                                // console.log('向左滑动')
+                                defaults.swipeLift.call(el,e);
+                            }
+                        }else {
+                            // 竖直滑动
+                            if (moveY > startY) {
+                                // 向下滑动
+                                // console.log('向下滑动')
+                                defaults.swipeDown.call(el,e);
+                            }else {
+                                // 向上滑动
+                                // console.log('向上滑动')
+                                defaults.swipeUp.call(el,e);
+                            }
+                        }
+
+                    }
+                    flag = false;
+
+                });
+
+            }else {
+                console.warn('请输入正确的元素');
+            }
+
+        }
+    
+    </script>
+</body>
+</html>

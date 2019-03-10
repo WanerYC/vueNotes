@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 快捷键 meta:vp + tab -->
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>京东移动端首页</title>
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<!-- 1.引入文件 -->
+	<link rel="stylesheet" type="text/css" href="js/swiper/css/swiper.min.css">
+	<script type="text/javascript" src="js/swiper/js/swiper.min.js"></script>
+</head>
+<body>
+	<!-- 用于整体居中的盒子 -->
+	<div class="container">
+		<!-- 头部 -->
+		<header class="header">
+			<div class="inner prz" id="headerInner">
+				<a class="logo sprite pra" href="#"></a>
+				<form>
+					<span class="sprite pra"></span>
+					<input type="text">
+				</form>
+				<a href="#" class="login pra">登录</a>
+			</div>
+		</header>
+		<!-- 轮播图 2.复制HTML结构 -->
+		<div class="swiper-container banner" id="banner">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide">
+		        	<img src="images/l1.jpg">
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/l2.jpg">
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/l3.jpg">
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/l4.jpg">
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/l5.jpg">
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/l6.jpg">
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/l7.jpg">
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/l8.jpg">
+		        </div>
+		    </div>
+		    <!-- 如果需要分页器 -->
+		    <div class="swiper-pagination"></div>
+		</div>
+		<!-- 导航菜单 -->
+		<ul class="navigation clearfix">
+			<li>
+				<a href="#">
+					<img src="images/nav0.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/nav1.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/nav2.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/nav3.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/nav4.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/nav5.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/nav6.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/nav7.png" alt="">
+					<span>分类查询</span>
+				</a>
+			</li>
+		</ul>
+		<!-- 产品部分 -->
+		<div class="main">
+			<!-- 掌上秒杀 -->
+			<div class="product">
+				<div class="product-title nobot">
+					<span class="handKill fl">掌上秒杀</span>
+					<div class="countDown fl" id="countDown">
+						<span>0</span>
+						<span>0</span>
+						<span>:</span>
+						<span>0</span>
+						<span>0</span>
+						<span>:</span>
+						<span>0</span>
+						<span>0</span>
+					</div>
+					<a href="#" class="more fr">更多></a>
+				</div>
+				<div class="product-content">
+					<ul class="handKill-list">
+						<li>
+							<a href="#">
+								<img src="images/detail01.jpg">
+								<span class="nowPrice">¥10</span>
+								<span class="oldPrice">¥100</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="images/detail02.jpg">
+								<span class="nowPrice">¥10</span>
+								<span class="oldPrice">¥100</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="images/detail01.jpg">
+								<span class="nowPrice">¥10</span>
+								<span class="oldPrice">¥100</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-title">
+					<h4 class="title prz">
+						京东超市
+					</h4>
+				</div>
+				<div class="product-content clearfix">
+					<a class="imgBox fl br" href="#">
+						<img src="images/cp1.jpg">
+					</a>
+					<a class="imgBox fr bb" href="#">
+						<img src="images/cp2.jpg">
+					</a>
+					<a class="imgBox fr" href="#">
+						<img src="images/cp3.jpg">
+					</a>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-title">
+					<h4 class="title prz">
+						京东超市
+					</h4>
+				</div>
+				<div class="product-content clearfix">
+					<a class="imgBox fr" href="#">
+						<img src="images/cp4.jpg">
+					</a>
+					<a class="imgBox fl" href="#">
+						<img src="images/cp5.jpg">
+					</a>
+					<a class="imgBox fl" href="#">
+						<img src="images/cp6.jpg">
+					</a>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-title">
+					<h4 class="title prz">
+						京东超市
+					</h4>
+				</div>
+				<div class="product-content clearfix">
+					<a class="imgBox fl br" href="#">
+						<img src="images/cp1.jpg">
+					</a>
+					<a class="imgBox fr bb" href="#">
+						<img src="images/cp2.jpg">
+					</a>
+					<a class="imgBox fr" href="#">
+						<img src="images/cp3.jpg">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

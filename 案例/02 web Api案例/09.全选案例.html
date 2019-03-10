@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrap {
+        width: 300px;
+        margin: 100px auto 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #c0c0c0;
+        width: 300px;
+    }
+
+    th,
+    td {
+        border: 1px solid #d0d0d0;
+        color: #404060;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #09c;
+        font: bold 16px "微软雅黑";
+        color: #fff;
+    }
+
+    td {
+        font: 14px "微软雅黑";
+    }
+
+    tbody tr {
+        background-color: #f0f0f0;
+    }
+
+    tbody tr:hover {
+        cursor: pointer;
+        background-color: #fafafa;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="selectAll" />
+                    </th>
+                    <th>菜名</th>
+                    <th>饭店</th>
+                </tr>
+            </thead>
+            <tbody id="options">
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>红烧肉</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>西红柿鸡蛋</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>油炸榴莲</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>清蒸助教</td>
+                    <td>田老师</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+    	// 点击全选按钮 实现全选功能
+    	
+    	// 全选按钮
+    	var selectAll = document.getElementById('selectAll');
+    	var options = document.getElementById('options');
+    	var inputs = options.getElementsByTagName('input');
+
+    	// 为全选按钮添加点击事件的处理函数
+    	selectAll.onclick = function () {
+
+    		// 当前复选框的值
+    		var current = selectAll.checked;
+
+    		for (var i = 0; i < inputs.length; i++) {
+
+    			// 全选按钮的值是什么 复选框的值就是什么
+    			inputs[i].checked = current;
+
+    		}
+
+    	};
+
+
+
+
+    	// 为每一个复选框添加点击事件
+    	for (var i = 0; i < inputs.length; i++) {
+
+    		// 当点击事件发生的时候 执行checkStatus函数
+    		inputs[i].onclick = checkStatus;
+
+    	}
+
+
+    	function checkStatus() {
+    	    	
+    	    // 假设所有的复选框都是选中的
+    	    var status = true;
+
+    	    // 看每一个复选框当前的选中状态
+    	    for (var i = 0; i < inputs.length; i++) {
+
+    	    	// 如果当前循环的复选框是没选中的
+    	    	if (!inputs[i].checked) {
+
+    	    		status = false;
+
+    	    		break;
+
+    	    	}
+
+    	    }
+
+    	    selectAll.checked = status;
+
+    	}
+    </script>
+</body>
+
+</html>

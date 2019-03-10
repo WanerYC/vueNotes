@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas {
+			 border: 1px solid #ccc;
+		}
+
+		div {
+			width: 600px;
+			height: 400px;
+			margin: 100px auto;
+		}
+	</style>
+</head>
+<body>
+	 <div><canvas width="600" height="400"></canvas></div>
+	 <script type="text/javascript">
+	 	 //获取canvas画布对象
+	 	 var canvas =document.querySelector("canvas");
+	 	 //获取绘图上下文
+	 	 var ctx=canvas.getContext("2d");
+
+	 	 //约定每个网格大小为20px
+	 	 
+	 	 //绘制横线
+	 	 var h=20;
+	 	 var h_number=canvas.height/h;
+
+	 	 ctx.strokeStyle="#ccc";
+	 	 for(var i= 0; i< h_number; i++ ) {
+	 	 	ctx.beginPath();
+	 	 	ctx.moveTo(0, h*i);
+	 	 	ctx.lineTo(600, h*i);
+	 	 	ctx.stroke();
+	 	 }
+
+	 	 //绘制竖线
+	 	 var w_number=canvas.width/h;
+	 	 for(var i=0; i< w_number; i++) {
+	 	 	ctx.beginPath();
+	 	 	ctx.moveTo(h*i, 0);
+	 	 	ctx.lineTo(h*i, 400);
+	 	 	ctx.stroke();
+	 	 }
+	 </script>
+</body>
+</html>

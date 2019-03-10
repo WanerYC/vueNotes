@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>视频播放器</title>
+	<link rel="stylesheet" type="text/css" href="css/index1.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+	<style type="text/css">
+		
+		.dm_box {
+
+			text-align: center;
+		}
+
+		.play_box {
+
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	
+	  <div class="play_box">
+	  	  <video src="fun.mp4" style="display: none;"></video>
+
+	  	  <!-- 自定义的控制栏 -->
+	  	  <div class="controls">
+	  	  	
+	  	  	  <div class="l_play">
+	  	  	  	 <a href="#" class="play fa fa-play"></a>
+	  	  	  </div>
+
+
+	  	  	  <div class="m_controls">
+	  	  	  	 <div class="line"></div>
+	  	  	  </div>
+
+
+	  	  	  <div class="r_time">
+	  	  	  	
+	  	  	  	  <div class="current_time">
+	  	  	  	  	 00:00:00
+	  	  	  	  </div>
+
+	  	  	  	  <div class="gang">/</div>
+
+	  	  	  	  <div class="total_time">
+	  	  	  	  	 00:00:00
+	  	  	  	  </div>
+
+	  	  	  </div>
+
+	  	  </div>
+	  </div>
+	  <!-- 弹幕功能 -->
+	  <div class="dm_box">
+	  	
+	  	   <input type="text" name="" class="dm_value">
+
+	  	   <input type="button" name="" class="dm_btn" value="发射">
+	  </div>
+	 <script type="text/javascript" src="js/index2.js"></script>
+	
+	 <script type="text/javascript" src="js/jquery.min.js"></script>
+
+	 <script type="text/javascript">
+	 	//弹幕动画效果
+	 	
+	 	//点击发射
+	 	$(".dm_btn").on("click",function () {
+
+	 		//获取输入的弹幕文字
+	 		var dm_v=$(".dm_value").val();
+
+	 		//创建一个标签
+	 		var span=$("<span></span>");
+
+	 		//将弹幕文字添加到span标签中
+	 		span.text(dm_v).css({
+	 			position: "absolute",
+	 			right: -200,
+	 			top: Math.floor(330*Math.random()),
+	 			color: 'rgb('+Math.floor(255*Math.random())+','+Math.floor(255*Math.random())+','+Math.floor(255*Math.random())+')',
+	 			fontWeight: 700,
+	 			zIndex: 100000
+	 		}).animate({
+
+	 			right: 800
+
+	 		}, 10000, function () {
+	 			// 自杀
+	 			$(this).remove();
+
+	 		});
+
+	 		//将span添加到播放器中
+	 		$(".play_box").append(span);
+
+	 	})
+
+	 </script>
+</body>
+</html>

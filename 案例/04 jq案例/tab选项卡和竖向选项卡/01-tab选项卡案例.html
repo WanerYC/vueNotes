@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #F4F4F4;
+        }
+        .tab {
+            width: 300px;
+            background-color: #fff;
+            border-bottom: 1px solid #ccc;
+        }
+        .tab .title {
+            padding: 18px 0px 0px;
+        }
+        .tab .title a {
+            display: block;
+            float: left;
+            width: 30px;
+            margin: 0 15px;
+            text-align: center;
+            font-size: 13px;
+            text-decoration: none;
+            color: #000;
+        }
+        .tab .title a:hover {
+            color: #FF5000;
+        }
+
+        .tab .detail {
+            padding: 10px;
+        }
+        
+        .tab .detail ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab .detail li {
+            float: left;
+            width: 130px;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+
+        .tab .detail li.top {
+            width: 280px;
+        }
+
+        .tab .detail a {
+            text-decoration: none;
+            color: #000;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        
+        .tab .detail a.top, .tab .detail a:hover {
+            color: #FF5000;
+        }
+
+        .current {
+            font-weight: bolder;
+            border-bottom: 2px solid #FF4400;
+        }
+
+
+        .clear {
+            clear: both;
+        }
+        .bottom {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="../jquery/1.x/jquery-1.12.4.js"></script>
+    <script>
+    
+        $( function () {
+
+            // 1 给所有的 可以选择的 a 标签添加鼠标进入事件
+            $( '.tab > .title > a' ).mouseenter( function () {
+                // 2. 进行两个排他
+                $( '.tab > .title > a' ).prop( 'className', '' );
+                $( '.tab > .detail > ul' ).css( 'display', 'none' );
+
+                // 3. 当前 a 标签添加 current 类样式
+                var index = $( this ).index();
+                $( this ).prop( 'className', 'current' );
+                $( '.tab > .detail > ul:eq( ' + index + ' )' ).css( 'display', 'block' );
+
+            } );
+
+        } );
+    </script>
+</head>
+<body>
+    <div class="tab">
+        <div class="title">
+            <a href="javascript:void(0);" class="current">公告</a>
+            <a href="javascript:void(0);">规则</a>
+            <a href="javascript:void(0);">论坛</a>
+            <a href="javascript:void(0);">安全</a>
+            <a href="javascript:void(0);">公益</a>
+            <div class="clear"></div>
+        </div>
+        <div class="detail">
+            <!-- tab0 -->
+            <ul>
+                <li class="top">
+                    <a href="#" class="top">阿里巴巴全资收购中天微 自主研发打造“中国芯”</a>
+                </li>
+                <li>
+                    <a href="#">一分钟卖出8万个榴莲</a>
+                </li>
+                <li>
+                    <a href="#">阿里AI翻译全球居首</a>
+                </li>
+            </ul>
+
+            <!-- tab1 -->
+            <ul style="display: none;">
+                <li>
+                    <a href="#">云标签工具，30秒打标</a>
+                </li>
+                <li>
+                    <a href="#">《淘宝网数字娱乐市场</a>
+                </li>
+                <li>
+                    <a href="#">《淘宝网大家电须通过</a>
+                </li>
+                <li>
+                    <a href="#">飞猪旅行集市用车相关</a>
+                </li>
+            </ul>
+
+
+            <!-- tab2 -->
+            <ul style="display: none;">
+                <li>
+                    <a href="#">40天小白变设计师</a>
+                </li>
+                <li>
+                    <a href="#">中差评功能升级</a>
+                </li>
+                <li>
+                    <a href="#">陌生人拼团上线</a>
+                </li>
+                <li>
+                    <a href="#" class="top">2018年新零售趋势</a>
+                </li>
+            </ul>
+
+
+            <!-- tab3 -->
+            <ul style="display: none;">
+                <li>
+                    <a href="#">公益“护苗”行动招募</a>
+                </li>
+                <li>
+                    <a href="#" class="top">你愿意加入我们吗？</a>
+                </li>
+                <li>
+                    <a href="#">卖家注意：风险通报！</a>
+                </li>
+                <li>
+                    <a href="#">售假获刑又起诉！</a>
+                </li>
+            </ul>
+
+
+            <!-- tab4 -->
+            <ul style="display: none;">
+                <li>
+                    <a href="#" class="top">九寨沟地震紧急救援</a>
+                </li>
+                <li>
+                    <a href="#" class="top">公益宝贝卖家准入公告</a>
+                </li>
+                <li>
+                    <a href="#">致百万商家的感谢信</a>
+                </li>
+                <li>
+                    <a href="#">公益宝贝卖家发票索取</a>
+                </li>
+            </ul>
+
+
+            <div class="clear bottom"></div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

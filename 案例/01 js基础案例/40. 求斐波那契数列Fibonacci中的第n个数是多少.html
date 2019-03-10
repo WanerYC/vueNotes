@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>求斐波那契数列Fibonacci中的第n个数是多少</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//  1  1  2   3   5   8   13
+		
+		function Fibonacci(n){
+			if (n == 1 || n == 2) {
+				return 1
+			}
+			var num1 = 1 ; num2 = 1;
+			var sum = 0;
+			for(var i = 3 ; i <= n ; i++){
+				sum = num1 + num2 ; 
+				num1 =  num2 ;
+				num2 = sum ;
+			}
+			return sum ;
+		}
+		console.log(Fibonacci(7));      // 13
+	</script>
+</body>
+</html>

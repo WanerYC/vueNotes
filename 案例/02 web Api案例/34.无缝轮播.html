@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝轮播</title>
+	<style>
+	    * {
+	        margin: 0;
+	        padding: 0;
+	        text-decoration: none;
+	    }
+	    
+	    body {
+	        padding: 20px;
+	    }
+	    
+	    #container {
+	        position: relative;
+	        width: 520px;
+	        height: 280px;
+	        margin: 100px auto 0 auto;
+	        border: 3px solid #333;
+	        overflow: hidden;
+	    }
+	    
+	    #imgs {
+	        position: absolute;
+	        z-index: 1;
+	        width: 2000%;
+	        height: 280px;
+	    }
+	    
+	    #imgs img {
+	        float: left;
+	        width: 520px;
+	        height: 280px;
+	    }
+	    
+	    #points {
+	        position: absolute;
+	        left: 0;
+	        bottom: 20px;
+	        z-index: 2;
+	        height: 10px;
+	        width: 85px;
+	        width: 100%;
+	        text-align: center;
+	    }
+	    
+	    #points span {
+	    	display: inline-block;
+	        margin: 0 3px;
+	        width: 10px;
+	        height: 10px;
+	        border: 1px solid #fff;
+	        border-radius: 50%;
+	        background: #333;
+	        cursor: pointer;
+	    }
+	    
+	    #points .active {
+	        background: orangered;
+	    }
+	    
+	    .arrow {
+	        position: absolute;
+	        top: 120px;
+	        z-index: 2;
+	        display: none;
+	        width: 40px;
+	        height: 40px;
+	        font-size: 36px;
+	        font-weight: bold;
+	        line-height: 39px;
+	        text-align: center;
+	        color: #fff;
+	        background-color: rgba(0, 0, 0, 0.3);
+	        cursor: pointer;
+	    }
+	    
+	    .arrow:hover {
+	        background-color: rgba(0, 0, 0, 0.7);
+	    }
+	    
+	    #container:hover .arrow {
+	        display: block;
+	    }
+	    
+	    #prev {
+	        left: 20px;
+	    }
+	    
+	    #next {
+	        right: 20px;
+	    }
+	</style>
+
+</head>
+<body>
+	<div id="container">
+	    <div id="imgs" style=" left: -520px">
+	    	<img src="images/5.jpg" />
+	        <img src="images/1.jpg" />
+	        <img src="images/2.jpg" />
+	        <img src="images/3.jpg" />
+	        <img src="images/4.jpg" />
+	        <img src="images/5.jpg" />
+	        <img src="images/1.jpg" />
+	    </div>
+	    <div id="points">
+	        <span index="1" class="active"></span>
+	        <span index="2"></span>
+	        <span index="3"></span>
+	        <span index="4"></span>
+	        <span index="5"></span>
+	    </div>
+	    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+	    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+	</div>
+
+	<script>
+		var imgs = document.getElementById('imgs');
+		var spans = document.getElementById('points').children;
+		var prev = document.getElementById('prev');
+		var next = document.getElementById('next');
+		var current = 1;
+		var container = document.getElementById('container');
+
+		// 给箭头添加点击事件
+		prev.onclick = function () {
+			
+			current--; 
+
+			if (current < 0) {
+				// 直接拽到视觉效果中的最后一张 索引为5, 然后执行 滑到视觉效果中的倒数第二张, 索引为4
+				imgs.style.left = -5 * 520 + 'px';
+
+				current = 4;
+			}
+			
+			// 以下功能 封装成函数
+				// imgs.style.left = -current * 520 + 'px';
+
+				// // 给相应的轮播点加上选中效果
+				// for (var i = 0; i < spans.length; i++) {
+				// 	// 想给所有的去除选中样式
+				// 	spans[i].className = '';
+				// }
+				// // 给相应的span加上选中样式, 相应的span的索引是从0开始的, 所以对应的span应该为 current-1
+				// // 但是要注意最前方图片 索引为0和最后方的图片索引为6对应的span 做判断
+				// if (current == 0) {
+				// 	spans[4].className = 'active';
+				// } else if (current == 6) {
+				// 	spans[0].className = 'active';
+				// }else {
+
+				// 	spans[current - 1].className = 'active';
+
+				// }
+			// prev.style.display = 'none';
+			// next.style.display = 'none';
+
+			next.style.display = 'none';
+			prev.style.display = 'none';
+			
+			change(current);
+		}
+
+		next.onclick = function () {
+			current++; 
+			if (current > 6) {
+				
+				// 如果轮播走到了 索引6(即视觉效果上的第一张), 那么把图片直接拽到视觉效果上的第一张上, 执行滑到下一张(即视觉效果上的第二种)
+				
+				imgs.style.left = '-520px';
+
+
+
+				current = 2;
+			}
+
+				next.style.display = 'none';
+				prev.style.display = 'none';
+			
+			change(current);
+		}
+
+		// 给按钮添加点击事件(切换图片和选中样式)
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].onclick = function () {
+				var index = this.getAttribute('index');
+
+				imgs.style.left = -index * 520 + 'px';
+
+				// 给相应的span加上选中样式
+				for (var i = 0; i < spans.length; i++) {
+					// 先给所有的span去除选中样式
+					spans[i].className = '';
+				}
+
+				// 给当前的span加选中样式
+				// 因为index 是从1开始的, span的索引是从0 开始的, 所以 当前的span索引为 index- 1
+
+				spans[index - 1].className = 'active';
+			}
+
+		}
+
+		// 添加自动播放
+		var timerId = setInterval(function() {
+			current++; 
+
+			if (current > 6) {
+				// 直接拽到视觉效果中的最后一张 索引为5, 然后执行 滑到视觉效果中的倒数第二张, 索引为4
+				imgs.style.left = '-520px';
+
+				current = 2;
+			}
+			change(current);
+		}, 3000);
+
+		
+
+		// 切换成图片和按钮样式的函数
+		function change (a) {
+			
+			// imgs.style.left = -a * 520 + 'px';
+			animate(imgs, 'left', -a * 520, function() {
+				next.style.display = 'block';
+				prev.style.display = 'block';
+			});
+
+			// 给相应的轮播点加上选中效果
+			for (var i = 0; i < spans.length; i++) {
+				// 想给所有的去除选中样式
+				spans[i].className = '';
+			}
+			// 给相应的span加上选中样式, 相应的span的索引是从0开始的, 所以对应的span应该为 current-1
+			// 但是要注意最前方图片 索引为0和最后方的图片索引为6对应的span 做判断
+			if (a == 0) {
+				spans[4].className = 'active';
+			} else if (a == 6) {
+				spans[0].className = 'active';
+			}else {
+
+				spans[a - 1].className = 'active';
+
+			}
+		}
+
+		// 切换成图片和按钮样式的动画函数
+		function animate (element,attr, target, fn) {
+			
+			clearInterval(element.timeId);
+
+			element.timeId = setInterval(function () {
+
+				var current = parseInt(getComputedStyle(element)[attr]);
+
+				var speed = 0;
+
+				if (target > current) {
+					speed = Math.ceil((target - current) / 10);
+				} else {
+					speed = Math.floor((target - current) / 10);
+				}
+
+				// 速度的设定
+				// var speed = (target - current) / 10; 
+
+				// 如果当前伪装者等于目标点 清除定时器
+				if (current == target) {
+
+					clearInterval(element.timeId);
+
+					if(fn) {
+						fn();
+					}
+
+				} else {
+
+					// 不放入else中 会多跑10px
+					element.style[attr] = current + speed + 'px';
+				}
+				
+			},30)
+		}
+	</script>
+</body>
+</html>

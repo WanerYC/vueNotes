@@ -1,0 +1,874 @@
+/*
+* @Author: dhl
+* @Date:   2018-05-27 16:22:17
+* @Last Modified by:   dhl
+* @Last Modified time: 2018-05-28 18:11:36
+*/
+/* 开始 */
+.center {
+	position: fixed;
+	right: 30px;
+	top: 20px;
+	z-index: 100;
+}
+
+.down {
+	position: fixed;
+	right: 30px;
+	bottom: 20px;
+	z-index: 100;
+	animation: down 1s linear infinite alternate;
+	cursor: pointer;
+}
+
+@keyframes down {
+	from {
+		bottom: 20px;
+	}
+
+	to {
+	   bottom: 50px;
+	}
+}
+
+/* 第一屏样式 */
+.section1 {
+	background: url("../img/01-bg.png") no-repeat bottom;
+	position: relative;
+}
+
+.fly {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 50px);
+
+	/* 调用动画集 */
+	animation: fly 1s linear infinite alternate;
+}
+
+.sofa {
+	position: absolute;
+	left: 50%;
+	transform: translate(-300px, 180px);
+	animation: sofa 1s linear infinite alternate 0.5s;
+}
+
+.goods {
+	position: absolute;
+	left: 50%;
+	bottom: 100px;
+	transform: translate(-50%);
+}
+
+
+/* 第一屏动画效果 */
+@keyframes fly {
+	from {
+		transform: translate(-50%, 50px);
+	}
+
+	to {
+		transform: translate(-50%, 30px);
+	}
+}
+
+@keyframes sofa {
+	from {
+		transform: translate(-300px, 180px);
+	}
+
+	to {
+		transform: translate(-300px, 150px);
+	}
+}
+
+
+/* 第二屏 */
+.section2 {
+	background: url("../img/02-bg.png") no-repeat bottom;
+}
+
+.text02 {
+	position: absolute;
+	left: 50%;
+	top: 50px;
+	transform: translate(-50%);
+}
+
+.goods02 {
+	width: 441px;
+	height: 218px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform-origin: right bottom;
+	transform: translate(-50%,-45%) scale(0);
+}
+
+.goods02.animate {
+	animation: goods02 1s linear forwards 3s;
+}
+
+@keyframes goods02 {
+	from {
+		transform: translate(-50%,-45%) scale(0);
+	}
+
+	to {
+		transform: translate(-50%,-45%) scale(1);
+	}
+}
+
+
+
+.search {
+	width: 222px;
+	height: 45px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(150%,-50%);
+	opacity: 0;
+}
+
+.search.animate {
+	animation: search 4s linear forwards;
+}
+
+
+@keyframes search {
+	0% {
+		opacity: 1;
+		transform: translate(150%,-50%) scale(1);
+	}
+
+	50% {
+		opacity: 1;
+		transform: translate(-50%,-50%) scale(1);
+	}
+
+	75% {
+		opacity: 1;
+		transform: translate(-50%,-50%) scale(1);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0%,-345%) scale(0.8);
+	}
+}
+
+.search img {
+	position: absolute;
+}
+
+.search img:last-child {
+	top: 5px;
+	left: 100px;
+	opacity: 0;
+}
+
+.search img.animate:last-child {
+
+	animation: img_last 1s linear forwards 2s;
+}
+
+@keyframes img_last {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+
+
+/* 第二屏隐藏沙发 */
+.h_sofa02 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-75%,-80%) scale(0.5);
+	opacity: 0;
+	z-index: 10;
+}
+
+.h_sofa02.animate {
+	animation: h_sofa02 1.5s linear forwards;
+}
+
+@keyframes h_sofa02 {
+	from {
+		transform: translate(-75%,-80%) scale(0.5);
+		opacity: 1;
+	}
+
+	to {
+		transform: translate(-110%,345%) scale(1);
+		opacity: 1;
+	}
+}
+
+
+
+
+/* 第三屏 */
+.section3 {
+	background: url("../img/03-bg.png") no-repeat bottom;
+}
+
+.size03 {
+	width: 296px;
+	height: 131px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(15%,3%);
+}
+
+.size03 img {
+	position: absolute;
+}
+
+.size03 img:last-child {
+	display: none;
+}
+
+.btns {
+	width: 218px;
+	height: 58px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(17%,235%);
+}
+
+.btns img {
+	position: absolute;
+}
+
+.btns img:last-child {
+	display: none;
+}
+
+
+/* 第3屏隐藏沙发 */
+.h_sofa03 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-106%,-50%);
+	z-index: 11;
+	opacity: 0;
+}
+.h_sofa03.animate {
+	animation: h_sofa03 1.5s linear;
+}
+
+@keyframes h_sofa03 {
+	from {
+		opacity: 1;
+		transform: translate(-106%,-50%);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate(-26%,300%);
+	}
+}
+
+
+
+/* 第四屏 */
+.section4 {
+	background: url("../img/04-bg.png") no-repeat bottom;
+}
+.cloud04 {
+	position: absolute;
+	left: 0px;
+	top:0px;
+	animation: cloud04 3s linear infinite alternate;
+}
+
+@keyframes cloud04 {
+	from {
+		left: 0px;
+	}
+
+	to {
+		left: 500px;
+	}
+}
+
+.text04 {
+	width: 429px;
+	height: 31px;
+	position: absolute;
+	left: 50%;
+	top: 130px;
+	transform: translate(-50%);
+}
+
+.text04 img {
+	position: absolute;
+}
+
+.text04 img:last-child {
+	display: none;
+}
+
+
+.address {
+	width: 283px;
+	height: 270px;
+	position: absolute;
+	left: 50%;
+	top: 170px;
+	transform: translate(-50%);
+	display: none;
+}
+.address img:last-child {
+	position: absolute;
+	left: 50%;
+	top: 58px;
+	transform:translate(-50%);
+	display: none;
+}
+
+.cart {
+	width: 407px;
+	height: 346px;
+	position: absolute;
+	left: 50%;
+	bottom: 0px;
+	transform: translate(-50%);
+	z-index: 11;
+}
+
+.cart.animate {
+
+	animation: cart 3s linear forwards;
+}
+
+@keyframes cart {
+	from {
+		transform: translate(-50%);
+	}
+	to {
+		transform: translate(400%);
+	}
+}
+.cart img {
+
+	position: absolute;
+}
+
+.cart img:first-child {
+	 left: 150px;
+	 top: -40px;
+	 display: none;
+}
+
+
+/* 第四屏隐藏沙发 */
+.h_sofa4 {
+	position: absolute;
+	left: 200px;
+	bottom: 0px;
+	opacity: 0;
+	z-index: 10;
+}
+.h_sofa4.animate {
+	animation: h_sofa04 1.5s linear;
+}
+
+@keyframes h_sofa04 {
+	from {
+		opacity: 1;
+		bottom: 0px;
+	}
+
+	to {
+		opacity: 1;
+		bottom: -435px;
+	}
+}
+
+
+
+
+
+
+/* 第五屏 */
+.section5 {
+	background: url("../img/05-bg.png") no-repeat bottom;
+}
+
+.text05 {
+	position: absolute;
+	left: 200px;
+	top: 100px;
+}
+
+.cards {
+	width: 358px;
+	height: 221px;
+	position: absolute;
+	left: 200px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 10;
+}
+
+.cards img {
+	position: absolute;
+}
+
+.cards img:first-child {
+	left: 100px;
+	/* top: -50px; */
+	top: 0px;
+}
+
+.cards img.animate:first-child {
+	animation: card01 1s linear forwards;
+}
+
+
+@keyframes card01 {
+	from {
+		top: 0px;
+	}
+
+	to {
+		top: -50px;
+	}
+}
+
+.cards img:nth-child(2) {
+	left: 100px;
+	/* bottom: -100px; */
+	bottom: 0px;
+}
+
+.cards img.animate:nth-child(2) {
+	animation: cards02 1s linear forwards;
+}
+
+@keyframes cards02 {
+	from {
+		bottom: 0px;
+	}
+
+	to {
+		bottom: -130px;
+	}
+}
+
+
+.mouse {
+	width: 205px;
+	height: 819px;
+	position: absolute;
+	left: 50%;
+	transform: translate(155%);
+	overflow: hidden;
+}
+
+.mouse img {
+	position: absolute;
+	transform: translateY(-50%);
+}
+
+.mouse img:last-child {
+	display: none;
+}
+
+.hand {
+	position: absolute;
+	left: 50%;
+	bottom: -380px;
+	transform: translate(165%);
+}
+
+.hand.animate {
+	animation: hand 1.5s linear forwards;
+}
+
+@keyframes hand {
+	from {
+		bottom: -380px;
+	}
+
+	to {
+		bottom: 0px;
+	}
+}
+
+
+/* 第五屏隐藏沙发 */
+.h_sofa05 {
+	position: absolute;
+	bottom: 130px;
+	left: 200px;
+	opacity: 0;
+	z-index: 10;
+	transform: scale(1);
+}
+
+.h_sofa05.animate {
+	animation: h_sofa05 1.5s linear;
+}
+
+@keyframes h_sofa05 {
+	
+	form {
+		opacity: 1;
+		bottom: 130px;
+		left: 200px;
+		transform: scale(1);
+	}
+
+	to {
+		opacity: 1;
+		bottom: -330px;
+		left: 180px;
+		transform: scale(0.3);
+	}
+}
+
+ 
+/* 第六屏 */
+.section6 {
+	background: url("../img/06-bg.png") no-repeat bottom;
+}
+.section6.animate {
+	animation: section6 2s linear forwards 5s;
+}
+
+@keyframes section6 {
+	from {
+		background-position:bottom;
+	}
+
+	to {
+		background-position:right bottom;
+	}
+}
+
+
+
+.cloud06 {
+	width: 878px;
+	height: 107px;
+	position: absolute;
+	left: 0px;
+}
+.cloud06 img {
+	position: absolute;
+	left: 0px;
+}
+.cloud06 img.animate:first-child {
+	animation: cloud06 4s linear alternate infinite;
+}
+.cloud06 img.animate:last-child {
+	animation: cloud06 2s linear alternate infinite;
+}
+
+@keyframes cloud06 {
+	from {
+		 left: 0px;
+	}
+
+	to {
+		left: 500px;
+	}
+}
+
+
+.text06 {
+	width: 308px;
+	height: 59px;
+	position: absolute;
+	left: 50%;
+	top: 120px;
+	transform: translate(-166%);
+}
+.text06 img {
+	position: absolute;
+}
+.text06 img:last-child {
+	display: none;
+}
+
+.cart06 {
+	width: 221px;
+	height: 122px;
+	position: absolute;
+	bottom: 0px;
+	left: 50%;
+	transform: translate(-226%);
+	z-index: 11;
+}
+.cart06 img {
+	position: absolute;
+}
+
+.cart06 .public {
+	right: -80px;
+	top: -30px;
+}
+
+.cart06 .address06 {
+	display: none;
+}
+
+.cart06 .worker {
+	left: 0px;
+	bottom: 0px;
+	transform-origin: left bottom;
+	transform: scale(0);
+}
+
+.cart06 .worker.animate {
+	animation: worker 4s linear forwards;
+}
+
+@keyframes worker {
+	0% {
+		transform: scale(0);
+		
+		bottom: 0px;
+		left: 0px;
+	}
+
+	50% {
+		transform: scale(1);
+		
+		bottom: 0px;
+		left: 0px;
+	}
+
+	75% {
+		transform: scale(1);
+		bottom: 0px;
+		left: 0px;
+	}
+
+	100% {
+		transform: scale(1);
+		bottom: 130px;
+		left: 250px;
+	}
+}
+
+.cart06 .say {
+	right: -360px;
+	top: -450px;
+	display: none;
+}
+
+.box {
+	width: 123px;
+	height: 85px;
+	position: absolute;
+	left: -130px;
+	/* left: 200px; */
+	top: 180px;
+	/* top: 550px; */
+	transform: scale(1);
+
+	transition: left 1.5s linear,
+				top 2s linear 2s,
+				transform 2s linear 2s;
+
+	z-index: 11;
+}
+
+.box.animate {
+	left: 225px;
+	top: 550px;
+	transform: scale(0);
+}
+
+
+
+.people {
+	width: 106px;
+	height: 249px;
+	position: absolute;
+	bottom: 117px;
+	left: 50%;
+	transform: translate(293px);
+}
+
+.people img {
+	position: absolute;
+	bottom: 0px;
+}
+
+
+.people img:first-child {
+	opacity: 0;
+}
+
+.people img.animate:first-child {
+	animation: door 1s linear 2s forwards;
+}
+
+@keyframes door {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+
+
+.people img:last-child {
+	 transform-origin: right bottom;
+	 right: 0px;
+	 transform: scale(0);
+}
+
+.people img.animate:last-child {
+	animation: people 2s linear 3s forwards;
+}
+
+@keyframes people {
+	from {
+		 transform: scale(0);
+		 right: 0px;
+	}
+
+	50% {
+		transform: scale(1);
+		right: 0px;
+	}
+
+	75% {
+		transform: scale(1);
+		right: 0px;
+	}
+	to {
+		transform: scale(1);
+		right: 200px;
+	}
+}
+
+
+/* 第七屏 */
+.section7 {
+	background: url("../img/07_bg.png") no-repeat bottom;
+}
+.start {
+	/* width: 70px; */
+	height: 13px;
+	position: absolute;
+	left: 391px;
+	top: 204px;
+}
+.start img {
+	float: left;
+	margin-right: 6px;
+	opacity: 0;
+}
+@keyframes img {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+.start img.animate:nth-child(1) {
+	animation: img 1s linear forwards;
+}
+.start img.animate:nth-child(2) {
+	animation: img 1s 0.5s linear forwards;
+}
+
+.start img.animate:nth-child(3) {
+	animation: img 1s 1s linear forwards;
+}
+
+.start img.animate:nth-child(4) {
+	animation: img 1s 1.5s linear forwards;
+}
+
+.start img.animate:nth-child(5) {
+	animation: img 1s 2s linear forwards;
+}
+
+
+.text07 {
+	position: absolute;
+	left: 381px;
+	top: 250px;
+	transform-origin: left bottom;
+	transform: scale(0);
+}
+
+.text07.animate {
+	animation: text07  4s linear forwards 1.5s;
+}
+
+@keyframes text07 {
+	from {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1);
+	}
+
+	55% {
+		transform: scale(1);
+	}
+	to {
+
+		transform: scale(0.8);
+	}
+}
+
+
+/* 第八屏 */
+.section8 {
+	background: url("../img/08-bg.png");
+}
+
+.btns08 {
+	width: 389px;
+	height: 160px;
+	position: absolute;
+	left: 50%;
+	top: 100px;
+	transform: translate(-50%);
+}
+
+.btns08 img {
+	position: absolute;
+}
+.btns08 img:last-child {
+	display: none;
+}
+
+.more {
+	position: absolute;
+	left: 50%;
+	top: 180px;
+	transform: translate(260px);
+	cursor: pointer;
+}
+
+.hands08 {
+	position: absolute;
+	bottom: 0px;
+	left: 50%;
+	transform: translate(-50%);
+}

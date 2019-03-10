@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>banner</title>
+	<style>
+	    * {
+	        margin: 0;
+	        padding: 0;
+	        text-decoration: none;
+	    }
+	    
+	    body {
+	        padding: 20px;
+	    }
+	    
+	    #container {
+	        position: relative;
+	        width: 520px;
+	        height: 280px;
+	        margin: 100px auto 0 auto;
+	        border: 3px solid #333;
+	        overflow: hidden;
+	    }
+	    
+	    #imgs {
+	        position: absolute;
+	        z-index: 1;
+	        width: 2000%;
+	        height: 280px;
+	    }
+	    
+	    #imgs img {
+	        float: left;
+	        width: 520px;
+	        height: 280px;
+	    }
+	    
+	    #points {
+	        position: absolute;
+	        left: 0;
+	        bottom: 20px;
+	        z-index: 2;
+	        height: 10px;
+	        width: 85px;
+	        width: 100%;
+	        text-align: center;
+	    }
+	    
+	    #points span {
+	    	display: inline-block;
+	        margin: 0 3px;
+	        width: 10px;
+	        height: 10px;
+	        border: 1px solid #fff;
+	        border-radius: 50%;
+	        background: #333;
+	        cursor: pointer;
+	    }
+	    
+	    #points .active {
+	        background: orangered;
+	    }
+	    
+	    .arrow {
+	        position: absolute;
+	        top: 120px;
+	        z-index: 2;
+	        display: none;
+	        width: 40px;
+	        height: 40px;
+	        font-size: 36px;
+	        font-weight: bold;
+	        line-height: 39px;
+	        text-align: center;
+	        color: #fff;
+	        background-color: rgba(0, 0, 0, 0.3);
+	        cursor: pointer;
+	    }
+	    
+	    .arrow:hover {
+	        background-color: rgba(0, 0, 0, 0.7);
+	    }
+	    
+	    #container:hover .arrow {
+	        display: block;
+	    }
+	    
+	    #prev {
+	        left: 20px;
+	    }
+	    
+	    #next {
+	        right: 20px;
+	    }
+	</style>
+
+
+</head>
+<body>
+	<div id="container">
+	    <div id="imgs" style=" left: -520px">
+	    	<img src="../images/5.jpg" />
+	        <img src="../images/1.jpg" />
+	        <img src="../images/2.jpg" />
+	        <img src="../images/3.jpg" />
+	        <img src="../images/4.jpg" />
+	        <img src="../images/5.jpg" />
+	        <img src="../images/1.jpg" />
+	    </div>
+	    <div id="points">
+	        <span index="1" class="active"></span>
+	        <span index="2"></span>
+	        <span index="3"></span>
+	        <span index="4"></span>
+	        <span index="5"></span>
+	    </div>
+	    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+	    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+	</div>
+    <!-- <script src="banner.js"></script> -->
+    <script>
+        // 获取元素
+        var prev = document.querySelector('#prev');
+        var next = document.querySelector('#next');
+        var index = 1;
+        var imgs = document.querySelector('#imgs');
+
+
+        // 给next 下一张按钮添加点击事件
+        next.onclick = function() {
+            index++;
+            if(index > 6) {
+                index = 0;
+            }
+            imgs.style.left = -index * 520 + 'px';
+        }
+        // 给prev 上一张按钮添加点击事件
+        prev.onclick = function() {
+            index--;
+            if(index < 0) {
+                index = 4;
+            }
+            imgs.style.left = -index * 520 + 'px';
+        }
+    </script>
+</body>
+</html>

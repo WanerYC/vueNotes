@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			font-size: 0;
+			text-align: center;
+			padding-top: 100px;
+		}
+		button {
+			width: 100px;
+			height: 40px;
+			outline: none;
+		}	
+	</style>
+</head>
+<body>
+	<div class="box">
+		<button>按钮</button>
+		<button>按钮</button>
+		<button>按钮</button>
+		<button>按钮</button>
+		<button>按钮</button>
+	</div>
+	<script type="text/javascript">
+		var btns = document.getElementsByTagName('button');
+
+		for (var i = 0; i < btns.length; i++) {
+
+			btns[i].onclick = hello;
+
+		}
+
+		function hello () {
+			alert('hello');
+		}
+
+	</script>
+</body>
+</html>

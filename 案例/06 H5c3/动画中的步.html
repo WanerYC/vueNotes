@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.line {
+			 width: 5px;
+			 height: 150px;
+			 background-color: red;
+			 margin: 50px auto;
+
+			 transform-origin: bottom;
+
+			
+			 animation:  rotate 60s steps(60) infinite;
+		}
+
+		@keyframes rotate {
+			from {
+			 	transform: rotateZ(0deg);
+			} 
+
+			to {
+				transform: rotateZ(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	
+	  <div class="line"></div>
+
+</body>
+</html>

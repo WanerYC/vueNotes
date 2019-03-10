@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		textarea {
+			width: 300px;
+			height: 150px;
+			display: block;
+			margin: 150px auto 20px auto;
+			padding: 10px;
+			font-size: 16px;
+			font-family: '微软雅黑';
+		}
+
+		button {
+			width: 320px;
+			height: 30px;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<textarea id="deal">一、 运用自己的操作系统，通过国际互联网络等手段为会员提供法律信息交流平台。有权在必要时修改服务条款，服务条款一旦发生变动，将会在重要页面上提示修改内容或通过其他形式告知会员。如果会员不同意所改动的内容，可以主动取消获得的网络服务。如果会员继续享用网络服务，则视为接受服务条款的变动。保留随时修改或中断服务而不需知照会员的权利。“法律百科”行使修改或中断服务的权利，不需对会员或第三方负责。</textarea>
+	<button id="agree" disabled="disabled">请阅读协议(5)</button>
+	<script type="text/javascript">
+		/*
+			1. 获取按钮元素
+			2. 准备即将倒计时的数字 var index = 5;
+			3. 开启定时器 在定时器内部对index变量进行减一操作
+			4. 将index变量赋值到按钮中 "请阅读协议("+index+")"
+			5. 判断数字是否为0
+			6. 如果数字为0 将按钮的禁用属性设置为false 
+			   将按钮中的文本内容改为同意
+			   清除定时器
+		*/
+	
+		var agree = document.getElementById('agree');
+		var index = 5;
+
+		var timerId = setInterval(function() {
+
+			index--;
+
+			if (index == 0) {
+
+				// 更改按钮中的文字
+				agree.innerText = '同意';
+
+				// 解除禁用
+				agree.disabled = false;
+
+				// 清除定时器
+				clearInterval(timerId);
+
+			} else {
+
+				agree.innerText = '请阅读协议('+index+')';
+
+			}
+
+		}, 1000);
+
+	</script>
+</body>
+</html>

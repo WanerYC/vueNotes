@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>求一组数中的所有数的和与平均值</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [5,4,6,7,8,2,3,9,1,9];
+		var sum = 0, avg;
+		for (var i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		avg = sum / arr.length;
+		console.log(sum,avg);      // 54    5.4
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.7练习</title>
+    <style>
+        #angle {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="../images/tianshi.gif" id="angle" alt="">
+    </div>
+    <script>
+        // var angle = document.querySelector('#angle');
+        var angle = document.getElementById('angle');
+        console.log(angle);
+        document.onmouseover = function (e) {
+            console.log(e);
+            angle.style.left = e.pageX + "px";
+            angle.style.top = e.pageY + "px";
+        }
+    </script>
+</body>
+</html>

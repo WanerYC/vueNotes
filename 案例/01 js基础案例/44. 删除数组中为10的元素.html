@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>删除数组中为10的元素</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [1, 10, 2, 3, 10, 10, 10, 4 ,5, 10 ,6 ,7];
+
+		for(var i = 0 ; i < arr.length ; i ++){
+			if (arr[i] === 10) {
+				arr.splice(i, 1);
+				// 4 注意：当某个元素删除后，后续的其他元素索引值均-1
+			    //   使用i--抵消掉跳项的问题
+				i--;
+			}
+		}
+		console.log(arr);
+	</script>
+</body>
+</html>

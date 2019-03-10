@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 1.找出字符串中出现次数最多的字符以及出现的次数
+		
+		/*
+			1.统计这个字符串中每一个字符出现的次数 将统计结果放到一个对象中
+				
+				先准备一个空对象
+
+				遍历字符串	判断当前遍历的字符是不是这个对象的属性 如果不是 那么将当前遍历的字符作为这个对象的属性 并且赋值为1
+
+				如果是对象的属性 将对象的属性值取出 并且加 1 重新赋值给这个属性
+	
+			2.找出次数的最大值
+		*/
+		
+		var str = 'aabbccddddddd';
+
+		// 存储结果的对象
+		var result = {};
+
+		for (var i = 0; i < str.length; i++) {
+
+			var item = str[i];
+
+			// 判断对象中有没有这个属性
+			if (result[item]) {
+
+				// 如果有 就在这个属性值的基础上加1
+				result[item] = result[item] + 1;
+
+			}else{
+				// 如果没有 就把当前字符串当作对象的属性 并且赋值为1
+				result[item] = 1;
+			}
+
+		}
+
+
+
+
+
+		// 假设的出现次数最多的字符
+		var manyChar = '';
+		// 假设的出现最多的次数
+		var manyFrequency = 0;
+
+		for (var attr in result) {
+
+			// 如果假设的最大值 比当前值还小 就说明它不是最大值
+			if (manyFrequency < result[attr]) {
+
+				manyFrequency = result[attr];
+
+				manyChar = attr;
+
+			}
+
+		}
+
+		console.log(manyChar);
+		console.log(manyFrequency);
+		
+	</script>
+</body>
+</html>
